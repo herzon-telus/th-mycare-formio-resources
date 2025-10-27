@@ -1,0 +1,19 @@
+/* Todos los botones del wizard */
+.formio-wizard-nav-container button {
+  background-color: rgb(95, 55, 130) !important;
+  border-color: rgb(95, 55, 130) !important;
+  color: #ffffff !important;
+}
+
+/* Hover */
+.formio-wizard-nav-container button:hover {
+  background-color: rgb(115, 75, 150) !important;
+  border-color: rgb(115, 75, 150) !important;
+}
+
+/* Activo / presionado */
+.formio-wizard-nav-container button:active,
+.formio-wizard-nav-container button.active {
+  background-color: rgb(75, 35, 110) !important;
+  border-color: rgb(75, 35, 110) !important;
+}

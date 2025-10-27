@@ -1,0 +1,27 @@
+/* === Violet Theme for Form.io Components === */
+.violet-theme {
+}
+
+/* Label and helper text */
+.violet-theme label,
+.violet-theme .form-text {
+  color: rgb(75, 40, 109) !important;
+}
+
+/* Radio button circle (unchecked) */
+.violet-theme input[type="radio"].form-check-input {
+  border: 2px solid rgb(200, 67, 26);
+  accent-color: rgb(200, 67, 26); /* For browsers that support it */
+}
+
+/* Radio button circle (checked) */
+.violet-theme input[type="radio"].form-check-input:checked {
+  background-color: rgb(200, 67, 26);
+  border-color: rgb(200, 67, 26);
+}
+
+/* Optional: make text next to selected radio slightly bolder */
+.violet-theme .form-check-input:checked + span {
+  font-weight: 600;
+  color: rgb(200, 67, 26);
+}
