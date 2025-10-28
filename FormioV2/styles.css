@@ -1151,6 +1151,14 @@ body {
     margin: 20px 30px 0;
     border-radius: 12px;
     padding: 4px;
+    border: 1px solid var(--border-color); /* Added border for better visibility */
+}
+
+/* Override the inline style that hides tabs */
+/* SHOW OR HIDE THE TABS */
+.card-header {
+    display: block !important; /* Force display of tabs */
+    display: none;
 }
 
 .tab-btn {
@@ -1170,7 +1178,9 @@ body {
     background: var(--background);
     color: var(--primary-color);
     box-shadow: var(--shadow-light);
+    font-weight: 600; /* Increased font weight for better visibility */
 }
+/* TAB CONFIGURATION - END */
 
 .appointments-list {
     padding: 30px;
@@ -1694,6 +1704,7 @@ body {
 .plan-tab-content.active {
     display: block;
 }
+/* TAB CONFIGURATION - END */
 
 /* Current Plan Tab */
 .current-plan-card {
