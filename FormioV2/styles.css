@@ -926,6 +926,28 @@ body {
     border-radius: 4px;
 }
 
+/* Progress bar for 2 out of 20 steps */
+.progress_bar_2_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_2_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10%; /* 2 out of 20 steps = 10% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
 /* Style for the question counter */
 .formio-component-html37 p {
     font-size: 14px;
