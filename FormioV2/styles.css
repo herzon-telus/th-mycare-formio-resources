@@ -903,3 +903,90 @@ body {
     color: var(--text-primary);
     margin-bottom: 32px;
 }
+
+/* Progress bar styles */
+.progress_bar_1_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_1_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 5%; /* 1 out of 20 steps = 5% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Style for the question counter */
+.formio-component-html37 p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* Style for the question text */
+.formio-component-html38 p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+/* Style for the number input */
+.formio-component-number input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+}
+
+.formio-component-number input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(75, 40, 109, 0.1);
+}
+
+/* Style for the wizard navigation buttons */
+.formio-wizard-nav-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.btn-wizard-nav-cancel {
+    display: none; /* Hide the Cancel button */
+}
+
+.btn-wizard-nav-previous,
+.btn-wizard-nav-submit {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-wizard-nav-previous {
+    background-color: #f0f0f0;
+    color: var(--text-primary);
+    border: 1px solid #e0e0e0;
+}
+
+.btn-wizard-nav-submit {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+}
