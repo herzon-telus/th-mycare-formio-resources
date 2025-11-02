@@ -1408,3 +1408,87 @@ body {
     color: white;
     border: 1px solid var(--primary-color);
 }
+
+/* Custom radio button styling for TELUS */
+.telus_radio_button_class .radio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.telus_radio_button_class .form-check {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.telus_radio_button_class .form-check-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #E5E5E5;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+    position: relative;
+}
+
+/* Hide the default radio button */
+.telus_radio_button_class .form-check-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style for the radio button text */
+.telus_radio_button_class .form-check-label span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Hover state - first element in the image */
+.telus_radio_button_class .form-check-label:hover {
+    border-color: var(--primary-color);
+    background-color: white;
+}
+
+/* Selected state - second element in the image */
+.telus_radio_button_class .form-check-input:checked + span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.telus_radio_button_class .form-check-input:checked ~ .form-check-label,
+.telus_radio_button_class label:has(.form-check-input:checked) {
+    border-color: var(--primary-color);
+    background-color: white;
+}
+
+/* Focus state for accessibility */
+.telus_radio_button_class .form-check-input:focus ~ .form-check-label {
+    box-shadow: 0 0 0 3px rgba(75, 40, 109, 0.2);
+}
+
+/* Label styling */
+.telus_radio_button_class .col-form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Fix for label positioning */
+.telus_radio_button_class .form-check-label.label-position-right {
+    padding-left: 20px;
+}
+
+/* Ensure the radio buttons are full width */
+.telus_radio_button_class .form-radio {
+    width: 100%;
+}
