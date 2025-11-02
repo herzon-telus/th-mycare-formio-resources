@@ -948,6 +948,402 @@ body {
     border-radius: 4px;
 }
 
+/* Progress bar for 3 out of 20 steps */
+.progress_bar_3_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_3_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 15%; /* 3 out of 20 steps = 15% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 4 out of 20 steps */
+.progress_bar_4_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_4_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20%; /* 4 out of 20 steps = 20% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 5 out of 20 steps */
+.progress_bar_5_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_5_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%; /* 5 out of 20 steps = 25% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 6 out of 20 steps */
+.progress_bar_6_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_6_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%; /* 6 out of 20 steps = 30% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 7 out of 20 steps */
+.progress_bar_7_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_7_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 35%; /* 7 out of 20 steps = 35% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 8 out of 20 steps */
+.progress_bar_8_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_8_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%; /* 8 out of 20 steps = 40% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 9 out of 20 steps */
+.progress_bar_9_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_9_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 45%; /* 9 out of 20 steps = 45% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 10 out of 20 steps */
+.progress_bar_10_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_10_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%; /* 10 out of 20 steps = 50% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 11 out of 20 steps */
+.progress_bar_11_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_11_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 55%; /* 11 out of 20 steps = 55% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 12 out of 20 steps */
+.progress_bar_12_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_12_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60%; /* 12 out of 20 steps = 60% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 13 out of 20 steps */
+.progress_bar_13_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_13_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 65%; /* 13 out of 20 steps = 65% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 14 out of 20 steps */
+.progress_bar_14_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_14_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 70%; /* 14 out of 20 steps = 70% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 15 out of 20 steps */
+.progress_bar_15_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_15_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 75%; /* 15 out of 20 steps = 75% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 16 out of 20 steps */
+.progress_bar_16_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_16_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 80%; /* 16 out of 20 steps = 80% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 17 out of 20 steps */
+.progress_bar_17_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_17_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 85%; /* 17 out of 20 steps = 85% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 18 out of 20 steps */
+.progress_bar_18_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_18_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 90%; /* 18 out of 20 steps = 90% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 19 out of 20 steps */
+.progress_bar_19_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_19_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 95%; /* 19 out of 20 steps = 95% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 20 out of 20 steps */
+.progress_bar_20_20 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_20_20::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; /* 20 out of 20 steps = 100% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
 /* Style for the question counter */
 .formio-component-html37 p {
     font-size: 14px;
