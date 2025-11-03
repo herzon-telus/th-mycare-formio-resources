@@ -1475,12 +1475,38 @@ body {
 }
 
 /* Label styling */
-.telus_radio_button_class .col-form-label {
+.telus_checkbox_class .col-form-label {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 16px;
     display: block;
+}
+
+/* Progress saved message styling */
+.progress_saved {
+    display: flex;
+    align-items: center;
+    background-color: #f5f9f5;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #2B8000;
+    font-weight: 500;
+}
+
+.progress_saved::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B8000'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
 }
 
 /* Fix for label positioning */
