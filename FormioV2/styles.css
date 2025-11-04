@@ -45,15 +45,20 @@ body {
 }
 
 /* Style the wizard navigation header */
-[ref="wizard-ez9p3p-header"] {
+[ref="wizard-ez9p3p-header"], [ref="wizard-ep4zva-header"] {
     background-color: white;
     border-bottom: 1px solid #e0e0e0;
     padding: 16px;
     position: relative;
 }
 
-[ref="wizard-ez9p3p-header"] .pagination {
+[ref="wizard-ez9p3p-header"] .pagination, [ref="wizard-ep4zva-header"] .pagination {
     display: none; /* Hide the default pagination */
+}
+
+/* Hide tabs using the telus_hide_tabs class */
+.telus_hide_tabs nav[aria-label="Wizard navigation"] .pagination {
+    display: none !important; /* Hide the tabs with higher specificity */
 }
 
 /* Remove the back arrow styling */
