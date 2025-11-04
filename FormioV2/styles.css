@@ -1107,6 +1107,28 @@ body {
     border-radius: 4px;
 }
 
+/* Progress bar for 9 out of 28 steps - Red version */
+.progress_bar_9_28_red {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_9_28_red::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 32.14%; /* 9 out of 28 steps = 32.14% */
+    background-color: #DC3545; /* Red color */
+    border-radius: 4px;
+}
+
 /* Progress bar for 10 out of 28 steps */
 .progress_bar_10_28 {
     position: relative;
