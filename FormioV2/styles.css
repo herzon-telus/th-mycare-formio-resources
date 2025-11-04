@@ -1573,7 +1573,8 @@ body {
 /* Style for the wizard navigation buttons */
 .formio-wizard-nav-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 16px;
     margin-top: 32px;
     padding: 0;
     list-style: none;
@@ -1583,24 +1584,40 @@ body {
     display: none; /* Hide the Cancel button */
 }
 
+/* Common styles for navigation buttons */
 .btn-wizard-nav-previous,
+.btn-wizard-nav-next,
 .btn-wizard-nav-submit {
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-weight: 500;
     transition: all 0.2s ease;
+    min-width: 120px;
+    text-align: center;
 }
 
+/* Previous button - white with purple border and text */
 .btn-wizard-nav-previous {
-    background-color: #f0f0f0;
-    color: var(--text-primary);
-    border: 1px solid #e0e0e0;
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
+.btn-wizard-nav-previous:hover {
+    background-color: var(--telus-light-purple);
+}
+
+/* Next button - purple with white text */
+.btn-wizard-nav-next,
 .btn-wizard-nav-submit {
     background-color: var(--primary-color);
     color: white;
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-wizard-nav-next:hover,
+.btn-wizard-nav-submit:hover {
+    background-color: var(--telus-primary-focus);
 }
 
 /* Custom radio button styling for TELUS */
