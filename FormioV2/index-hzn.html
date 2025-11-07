@@ -17,17 +17,45 @@
     <div id="formio-form"></div>
 
     <script>
+        var languages = {en: true};
+        window.setLanguage = function(lang) {
+        // If we already have loaded the language, then just set it with the sdk.
+        if (languages[lang]) {
+            return form.language = lang;
+        }
+        
+        // Fetch the language from the Resource.
+        Formio.fetch('https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language/submission?data.language=' + lang).then(function(resp) {
+            return resp.json();
+        }).then(function(result) {
+            // Ensure future sets will use the cached language.
+            languages[lang] = true;
+        
+            // Add this language.
+            form.addLanguage(lang, result[0].data.translations);
+            
+            // Set this language.
+            form.language = lang;
+        });
+        };
+
         // Wait for the Form.io library to load
         document.addEventListener('DOMContentLoaded', function() {
             // Directly create form using the full URL
             Formio.createForm(document.getElementById('formio-form'),
                 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznformkttraining'
-            ).then(function(form) {
+            ).then(function(formInstance) {
+                // Store form in global variable
+                form = formInstance;
+                
                 // Add form submission event handler
                 form.on('submit', function(submission) {
                     console.log('Form submitted:', submission);
                     alert('Form submitted successfully!');
                 });
+
+                //setLanguage('es'); // Set default language to English
+
             }).catch(function(error) {
                 console.error('Error creating form:', error);
                 alert('Error loading form: ' + error.message);
