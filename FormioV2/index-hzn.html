@@ -14,53 +14,57 @@
     <link rel="stylesheet" href="https://cdn.form.io/js/formio.form.min.css">
 </head>
 <body>
-    <div id="formio-form"></div>
+    <div id="formio"></div>
 
     <script>
-        var languages = {en: true};
-        window.setLanguage = function(lang) {
-        // If we already have loaded the language, then just set it with the sdk.
+        // This is the URL of the form you built in the Form Builder
+        const yourFormUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznformkttraining';
+
+        // This is the URL of the Language resource you just created
+        const yourLanguageResourceUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language';
+
+        // A simple cache to hold translations we've already fetched
+        var languages = { en: true }; // 'en' is often the default
+        // This function will fetch the translations and apply them
+        function setLanguage(lang) {
+        // If we already have this language, just apply it
         if (languages[lang]) {
-            return form.language = lang;
-        }
-        
-        // Fetch the language from the Resource.
-        Formio.fetch('https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language/submission?data.language=' + lang).then(function(resp) {
-            return resp.json();
-        }).then(function(result) {
-            // Ensure future sets will use the cached language.
-            languages[lang] = true;
-        
-            // Add this language.
-            form.addLanguage(lang, result[0].data.translations);
-            
-            // Set this language.
+            if (form) {
             form.language = lang;
-        });
-        };
-
-        // Wait for the Form.io library to load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Directly create form using the full URL
-            Formio.createForm(document.getElementById('formio-form'),
-                'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznformkttraining'
-            ).then(function(formInstance) {
-                // Store form in global variable
-                form = formInstance;
-                
-                // Add form submission event handler
-                form.on('submit', function(submission) {
-                    console.log('Form submitted:', submission);
-                    alert('Form submitted successfully!');
-                });
-
-                //setLanguage('es'); // Set default language to English
-
-            }).catch(function(error) {
-                console.error('Error creating form:', error);
-                alert('Error loading form: ' + error.message);
+            }
+            return;
+        }
+        // If not, fetch the translations from our 'Language' resource
+        Formio.fetch(yourLanguageResourceUrl + '/submission?data.language=' + lang)
+            .then(function(resp) {
+            return resp.json();
+            })
+            .then(function(result) {
+            if (!result || !result.length) {
+                console.warn('No translations found for language:', lang);
+                return;
+            }
+            // Get the 'translations' datamap from the first result
+            const translations = result[0].data.translations;
+            // Store this language in the cache
+            languages[lang] = translations;
+            // Add this language to the Form.io renderer
+            if (form) {
+                form.addLanguage(lang, translations);
+                form.language = lang; // Apply the new language
+            }
             });
+        }
+        // 1. Create the form instance
+        Formio.createForm(document.getElementById('formio'), yourFormUrl)
+        .then(function(formInstance) {
+            window.form = formInstance; // Store the form instance
+            // 2. Set the language.
+            // This will trigger the fetch logic above if 'fr' isn't cached
+            setLanguage('es'); 
         });
+
+
     </script>
 </body>
 </html>
