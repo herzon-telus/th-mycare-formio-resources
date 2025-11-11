@@ -17,42 +17,36 @@
     <div id="formio"></div>
 
     <script>
-        // This is the URL of the form you built in the Form Builder
+        // URL of the form in the Form Builder
         const yourFormUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznformkttraining';
 
-        // This is the URL of the Language resource you just created
+        // URL of the Language resource
         const yourLanguageResourceUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language';
 
-        // A simple cache to hold translations we've already fetched
-        var languages = { en: true }; // 'en' is often the default
+        var languages = {};
         // This function will fetch the translations and apply them
         function setLanguage(lang) {
-        // If we already have this language, just apply it
-        if (languages[lang]) {
-            if (form) {
-            form.language = lang;
-            }
-            return;
-        }
-        // If not, fetch the translations from our 'Language' resource
-        Formio.fetch(yourLanguageResourceUrl + '/submission?data.language=' + lang)
-            .then(function(resp) {
-            return resp.json();
-            })
-            .then(function(result) {
-            if (!result || !result.length) {
-                console.warn('No translations found for language:', lang);
-                return;
-            }
-            // Get the 'translations' datamap from the first result
-            const translations = result[0].data.translations;
-            // Store this language in the cache
-            languages[lang] = translations;
-            // Add this language to the Form.io renderer
-            if (form) {
-                form.addLanguage(lang, translations);
-                form.language = lang; // Apply the new language
-            }
+       
+            Formio.fetch(yourLanguageResourceUrl + '/submission?data.language=' + lang)
+                .then(function(resp) {
+                return resp.json();
+                })
+                .then(function(result) {
+                if (!result || !result.length) {
+                    console.warn('No translations found for language:', lang);
+                    return;
+                }
+                // Get the 'translations' datamap from the first result
+                const translations = result[0].data.translations;
+                languages[lang] = translations;
+                // Add this language to the Form.io renderer
+                if (form) {
+                    form.addLanguage(lang, translations);
+                    // Apply the new language
+                    form.language = lang;
+                    // Force a redraw (necessary for english) 
+                    form.redraw();
+                }
             });
         }
         // 1. Create the form instance
@@ -60,11 +54,8 @@
         .then(function(formInstance) {
             window.form = formInstance; // Store the form instance
             // 2. Set the language.
-            // This will trigger the fetch logic above if 'fr' isn't cached
-            setLanguage('es'); 
+            setLanguage('fr'); 
         });
-
-
     </script>
 </body>
 </html>
