@@ -1,0 +1,1757 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* TELUS Brand Colors */
+:root {
+    --telus-primary: #4B286D;
+    --telus-primary-focus: #7C53A5;
+    --telus-secondary: #613889;
+    --telus-tertiary: #2B8000;
+    --telus-light-purple: #F3F0F7;
+    --primary-color: #4B286D;
+    --secondary-color: #2B8000;
+    --accent-color: #613889;
+    --text-primary: #2C2C2C;
+    --text-secondary: #666666;
+    --text-light: #999999;
+    --background: #FFFFFF;
+    --background-light: #F8F9FA;
+    --border-color: #E5E5E5;
+    --success-color: #28A745;
+    --warning-color: #FFC107;
+    --error-color: #DC3545;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.08);
+    --button-border-radius: 24px;
+}
+
+/* Custom styles to match the provided HTML structure */
+.wizard-page {
+    position: relative;
+    background-color: #ffffff;
+    padding: 24px;
+}
+
+/* Style the wizard navigation header */
+[ref="wizard-ez9p3p-header"], [ref="wizard-ep4zva-header"] {
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px;
+    position: relative;
+}
+
+[ref="wizard-ez9p3p-header"] .pagination, [ref="wizard-ep4zva-header"] .pagination {
+    display: none; /* Hide the default pagination */
+}
+
+/* Hide tabs using the telus_hide_tabs class */
+.telus_hide_tabs nav[aria-label="Wizard navigation"] .pagination {
+    display: none !important; /* Hide the tabs with higher specificity */
+}
+
+/* Remove the back arrow styling */
+.wizard-page::before {
+    display: none;
+}
+
+/* Style the main heading */
+.formio-component-html19 h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-align: left;
+    padding-left: 0;
+}
+
+/* Position the heading in the header */
+.formio-component-html19 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    background-color: white;
+    z-index: 5;
+    margin-bottom: 16px;
+    padding-top: 24px;
+}
+
+/* Hide empty paragraphs */
+.formio-component-html20,
+.formio-component-html21,
+.formio-component-html24 {
+    display: none;
+}
+
+/* Create card containers for each service */
+.formio-component-html22,
+.formio-component-html26,
+.formio-component-html30 {
+    background-color: var(--background);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    cursor: pointer;
+    min-height: 100px; /* Minimum height for cards */
+    height: auto; /* Allow height to adjust based on content */
+    transition: all 0.3s ease;
+    overflow: visible; /* Allow content to overflow for pricing tags */
+    z-index: 1; /* Base z-index */
+    border: 2px solid transparent;
+}
+
+/* Add hover effect to cards */
+.formio-component-html22:hover,
+.formio-component-html26:hover,
+.formio-component-html30:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--telus-light-purple);
+}
+
+/* Style the card titles */
+.formio-component-html22 h3,
+.formio-component-html26 h3,
+.formio-component-html30 h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: left;
+    padding-left: 0;
+    position: relative;
+    z-index: 5;
+    margin-left: 60px; /* Space for icon */
+}
+
+/* Style the card descriptions */
+.formio-component-html23 p,
+.formio-component-html27 p,
+.formio-component-html31 p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    margin-top: 0;
+    padding-left: 0;
+    line-height: 1.4;
+    display: block;
+}
+
+/* Position the descriptions below the cards */
+.formio-component-html23,
+.formio-component-html27,
+.formio-component-html31 {
+    position: relative;
+    margin-top: 10px; /* Space below the card */
+    text-align: left;
+    z-index: 4;
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+/* Hide all pricing and subscription text except for the last selected one */
+.formio-component-html25,
+.formio-component-html28,
+.formio-component-html29,
+.formio-component-html33 {
+    display: none;
+}
+
+/* Only show the Weight Management pricing and subscription */
+.formio-component-html32,
+.formio-component-html33 {
+    display: block;
+}
+
+/* Style the pricing information */
+.formio-component-html25 span,
+.formio-component-html28 span,
+.formio-component-html32 span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-left: 0; /* No need for padding, using grid */
+}
+
+/* Primary Care pricing - green */
+.formio-component-html25 span {
+    background-color: #e8f5e9;
+    color: var(--secondary-color);
+    font-weight: 500;
+    display: inline-block;
+    clear: both;
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin-left: 0;
+    font-size: 13px;
+}
+
+/* Adjust spacing for card content */
+.formio-component-html22 h3,
+.formio-component-html26 h3,
+.formio-component-html30 h3 {
+    margin-bottom: 8px;
+}
+
+/* Ensure the description text is properly positioned */
+.formio-component-html23,
+.formio-component-html27,
+.formio-component-html31 {
+    margin-top: 0;
+}
+
+/* Adjust the card padding to match the image */
+.formio-component-html22,
+.formio-component-html26,
+.formio-component-html30 {
+    padding: 16px 16px 16px 80px;
+}
+
+/* Menopause Care pricing - blue */
+.formio-component-html28 span {
+    color: var(--primary-color);
+    font-weight: 500;
+    background-color: var(--telus-light-purple);
+    padding: 6px 12px;
+    border-radius: 16px;
+    display: inline-block;
+}
+
+/* Weight Management pricing - blue */
+.formio-component-html32 span {
+    color: var(--primary-color);
+    font-weight: 500;
+    background-color: var(--telus-light-purple);
+    padding: 6px 12px;
+    border-radius: 16px;
+    display: inline-block;
+}
+
+/* Position the pricing info at the bottom of the page */
+.formio-component-html25,
+.formio-component-html28,
+.formio-component-html32 {
+    position: fixed;
+    bottom: 40px;
+    left: 47px;
+    margin-top: 0;
+    margin-left: 0;
+    z-index: 10;
+}
+
+/* Style the subscription text */
+.formio-component-html29 span,
+.formio-component-html33 span {
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+    margin-left: 0; /* No need for padding, using grid */
+}
+
+/* Position the subscription text at the bottom of the page */
+.formio-component-html29,
+.formio-component-html33 {
+    position: fixed;
+    bottom: 20px;
+    left: 47px;
+    margin-top: 0;
+    margin-left: 0;
+    z-index: 10;
+}
+
+/* Add icons for each service */
+.formio-component-html22::before,
+.formio-component-html26::before,
+.formio-component-html30::before {
+    content: "";
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-light);
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+/* Primary Care icon */
+.formio-component-html22::before {
+    background-color: #e8f5e9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B8000'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+}
+
+/* Menopause Care icon */
+.formio-component-html26::before {
+    background-color: var(--telus-light-purple);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234B286D'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E");
+}
+
+/* Weight Management icon */
+.formio-component-html30::before {
+    background-color: var(--telus-light-purple);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234B286D'%3E%3Cpath d='M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z'/%3E%3C/svg%3E");
+}
+
+/* Add right arrow to each card */
+.formio-component-html22::after,
+.formio-component-html26::after,
+.formio-component-html30::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999999'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/* New styles for the service cards based on the image */
+
+/* Style the header with back button */
+.card-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+    background-color: #fff;
+}
+
+.nav-tabs {
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:first-child .nav-link {
+    color: #4B286D;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item:first-child .nav-link::before {
+    content: "\f104"; /* Font Awesome left arrow icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.nav-item:nth-child(2) .nav-link {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Style the tab content container */
+.card-body.tab-pane.active {
+    padding: 15px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Style the service cards */
+.formio-component-html7,
+.formio-component-html8,
+.formio-component-html9,
+.formio-component-html10,
+.formio-component-html11,
+.formio-component-html12,
+.formio-component-html13,
+.formio-component-html14,
+.formio-component-html15,
+.formio-component-html16,
+.formio-component-html17,
+.formio-component-html18 {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Create service card containers */
+/* Primary Care Card Container */
+.formio-component-html7 {
+    background-color: white;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 20px 5px 20px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.formio-component-html8,
+.formio-component-html9 {
+    background-color: white;
+    padding: 0 20px;
+    position: relative;
+}
+
+.formio-component-html10 {
+    background-color: white;
+    border-radius: 0 0 16px 16px;
+    padding: 5px 20px 20px 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Menopause Care Card Container */
+.formio-component-html11 {
+    background-color: white;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 20px 5px 20px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.formio-component-html12,
+.formio-component-html13 {
+    background-color: white;
+    padding: 0 20px;
+    position: relative;
+}
+
+.formio-component-html14 {
+    background-color: white;
+    border-radius: 0 0 16px 16px;
+    padding: 5px 20px 20px 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Weight Management Card Container */
+.formio-component-html15 {
+    background-color: white;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 20px 5px 20px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.formio-component-html16,
+.formio-component-html17 {
+    background-color: white;
+    padding: 0 20px;
+    position: relative;
+}
+
+.formio-component-html18 {
+    background-color: white;
+    border-radius: 0 0 16px 16px;
+    padding: 5px 20px 20px 20px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Style the card titles */
+.formio-component-html7 h3,
+.formio-component-html11 h3,
+.formio-component-html15 h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    padding-left: 60px; /* Space for icon */
+}
+
+/* Style the card descriptions */
+.formio-component-html8 p,
+.formio-component-html12 p,
+.formio-component-html16 p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+    padding-left: 60px; /* Space for icon */
+}
+
+/* Style the pricing information */
+.formio-component-html10 span,
+.formio-component-html13 span,
+.formio-component-html17 span {
+    display: inline-block;
+    background-color: #e8f3e8;
+    color: #4B286D;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-left: 60px; /* Space for icon */
+}
+
+/* Style the subscription text */
+.formio-component-html14 span,
+.formio-component-html18 span {
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    margin-left: 60px; /* Space for icon */
+}
+
+/* Add icons for each service */
+.formio-component-html7::before,
+.formio-component-html11::before,
+.formio-component-html15::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+}
+
+/* Primary Care icon */
+.formio-component-html7::before {
+    content: "\f0f0"; /* Font Awesome user-md icon */
+    background-color: #e8f3e8;
+    color: #4B286D;
+}
+
+/* Menopause Care icon */
+.formio-component-html11::before {
+    content: "\f182"; /* Font Awesome female icon */
+    background-color: #e6f0ff;
+    color: #0066cc;
+}
+
+/* Weight Management icon */
+.formio-component-html15::before {
+    content: "\f21e"; /* Font Awesome balance-scale icon */
+    background-color: #e6f0ff;
+    color: #0066cc;
+}
+
+/* Add right arrow to each card group */
+.formio-component-html7::after,
+.formio-component-html11::after,
+.formio-component-html15::after {
+    content: "\f054"; /* Font Awesome chevron-right icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: #999;
+    z-index: 3;
+}
+
+/* Make entire card group clickable */
+.formio-component-html7,
+.formio-component-html8,
+.formio-component-html9,
+.formio-component-html10,
+.formio-component-html11,
+.formio-component-html12,
+.formio-component-html13,
+.formio-component-html14,
+.formio-component-html15,
+.formio-component-html16,
+.formio-component-html17,
+.formio-component-html18 {
+    cursor: pointer;
+}
+
+/* Create unified card appearance with single box-shadow */
+/* Primary Care Card - Wrapper */
+.formio-component-html7,
+.formio-component-html8,
+.formio-component-html9,
+.formio-component-html10 {
+    position: relative;
+}
+
+.formio-component-html7 {
+    margin-top: 15px;
+}
+
+.formio-component-html10 {
+    margin-bottom: 15px;
+}
+
+/* Primary Care Card - Apply single box-shadow */
+.formio-component-html7::before,
+.formio-component-html8::before,
+.formio-component-html9::before,
+.formio-component-html10::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.formio-component-html7::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formio-component-html10::before {
+    top: -1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menopause Care Card - Wrapper */
+.formio-component-html11,
+.formio-component-html12,
+.formio-component-html13,
+.formio-component-html14 {
+    position: relative;
+}
+
+.formio-component-html11 {
+    margin-top: 15px;
+}
+
+.formio-component-html14 {
+    margin-bottom: 15px;
+}
+
+/* Menopause Care Card - Apply single box-shadow */
+.formio-component-html11::before,
+.formio-component-html12::before,
+.formio-component-html13::before,
+.formio-component-html14::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.formio-component-html11::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formio-component-html14::before {
+    top: -1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Weight Management Card - Wrapper */
+.formio-component-html15,
+.formio-component-html16,
+.formio-component-html17,
+.formio-component-html18 {
+    position: relative;
+}
+
+.formio-component-html15 {
+    margin-top: 15px;
+}
+
+.formio-component-html18 {
+    margin-bottom: 15px;
+}
+
+/* Weight Management Card - Apply single box-shadow */
+.formio-component-html15::before,
+.formio-component-html16::before,
+.formio-component-html17::before,
+.formio-component-html18::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.formio-component-html15::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.formio-component-html18::before {
+    top: -1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove duplicate borders between card components */
+.formio-component-html8,
+.formio-component-html9,
+.formio-component-html12,
+.formio-component-html13,
+.formio-component-html16,
+.formio-component-html17 {
+    border-top: none;
+    border-bottom: none;
+}
+
+/* Hide error containers */
+.formio-errors {
+    display: none;
+}
+
+/* Hide wizard navigation buttons */
+[id="wizard-ez9p3p-nav"] {
+    display: none;
+}
+
+/* Adjust height of wizard page */
+.wizard-page {
+    margin-top: 0;
+    padding-bottom: 30px;
+}
+
+/* Add hover effect to cards */
+.formio-component-html22:hover,
+.formio-component-html26:hover,
+.formio-component-html30:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure the card has enough height for all content */
+.formio-component-html22,
+.formio-component-html26,
+.formio-component-html30 {
+    min-height: 80px;
+    margin-bottom: 0; /* No need for extra space below */
+    padding: 20px 20px 20px 80px; /* Add padding on the left for the icon */
+}
+
+/* Add specific styles for the wizard page to match the image */
+body {
+    background-color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.wizard-page {
+    background-color: #ffffff;
+}
+
+/* Make the header fixed at the top */
+[ref="wizard-ez9p3p-header"] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Adjust the position of the heading */
+.formio-component-html19 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    z-index: 5;
+    box-shadow: none;
+    background-color: white;
+    display: block;
+    margin-bottom: 16px;
+    padding-top: 24px;
+}
+
+/* Remove the back arrow position */
+.wizard-page::before {
+    display: none;
+}
+
+/* Style for all links in the wizard page - reset to plain text */
+.wizard-page a {
+    display: inline;
+    text-decoration: underline;
+    color: inherit;
+    font-weight: normal;
+    font-size: inherit;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    margin: 0;
+    position: static;
+    transition: none;
+    text-align: inherit;
+}
+
+/* Remove arrow from all links */
+.wizard-page a::after {
+    content: none;
+}
+
+/* Style the page navigation buttons */
+.pagination li a {
+    border: 1px solid #e0e0e0;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin: 0 4px;
+}
+
+.pagination li.active a {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Style the Cancel and Next buttons */
+.btn-default, .btn-primary {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-default {
+    display: none; /* Hide the Cancel button */
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+}
+
+/* Add styles for the greeting text */
+.wizard-page h2:first-of-type {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.wizard-page h2:nth-of-type(2) {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+}
+
+/* Progress bar styles */
+.progress_bar_1_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_1_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 3.57%; /* 1 out of 28 steps = 3.57% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 2 out of 28 steps */
+.progress_bar_2_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_2_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 7.14%; /* 2 out of 28 steps = 7.14% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 3 out of 28 steps */
+.progress_bar_3_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_3_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10.71%; /* 3 out of 28 steps = 10.71% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 4 out of 28 steps */
+.progress_bar_4_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_4_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 14.29%; /* 4 out of 28 steps = 14.29% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 5 out of 28 steps */
+.progress_bar_5_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_5_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 17.86%; /* 5 out of 28 steps = 17.86% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 6 out of 28 steps */
+.progress_bar_6_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_6_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 21.43%; /* 6 out of 28 steps = 21.43% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 7 out of 28 steps */
+.progress_bar_7_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_7_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%; /* 7 out of 28 steps = 25% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 8 out of 28 steps */
+.progress_bar_8_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_8_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 28.57%; /* 8 out of 28 steps = 28.57% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 9 out of 28 steps */
+.progress_bar_9_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_9_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 32.14%; /* 9 out of 28 steps = 32.14% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 9 out of 28 steps - Red version */
+.progress_bar_9_28_red {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_9_28_red::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 32.14%; /* 9 out of 28 steps = 32.14% */
+    background-color: #DC3545; /* Red color */
+    border-radius: 4px;
+}
+
+/* Progress bar for 10 out of 28 steps */
+.progress_bar_10_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_10_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 35.71%; /* 10 out of 28 steps = 35.71% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 11 out of 28 steps */
+.progress_bar_11_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_11_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 39.29%; /* 11 out of 28 steps = 39.29% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 12 out of 28 steps */
+.progress_bar_12_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_12_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 42.86%; /* 12 out of 28 steps = 42.86% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 13 out of 28 steps */
+.progress_bar_13_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_13_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 46.43%; /* 13 out of 28 steps = 46.43% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 14 out of 28 steps */
+.progress_bar_14_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_14_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%; /* 14 out of 28 steps = 50% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 15 out of 28 steps */
+.progress_bar_15_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_15_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 53.57%; /* 15 out of 28 steps = 53.57% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 16 out of 28 steps */
+.progress_bar_16_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_16_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 57.14%; /* 16 out of 28 steps = 57.14% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 17 out of 28 steps */
+.progress_bar_17_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_17_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60.71%; /* 17 out of 28 steps = 60.71% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 18 out of 28 steps */
+.progress_bar_18_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_18_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 64.29%; /* 18 out of 28 steps = 64.29% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 19 out of 28 steps */
+.progress_bar_19_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_19_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 67.86%; /* 19 out of 28 steps = 67.86% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 20 out of 28 steps */
+.progress_bar_20_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_20_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 71.43%; /* 20 out of 28 steps = 71.43% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 21 out of 28 steps */
+.progress_bar_21_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_21_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 75%; /* 21 out of 28 steps = 75% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 22 out of 28 steps */
+.progress_bar_22_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_22_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 78.57%; /* 22 out of 28 steps = 78.57% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 23 out of 28 steps */
+.progress_bar_23_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_23_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 82.14%; /* 23 out of 28 steps = 82.14% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 24 out of 28 steps */
+.progress_bar_24_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_24_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 85.71%; /* 24 out of 28 steps = 85.71% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 25 out of 28 steps */
+.progress_bar_25_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_25_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 89.29%; /* 25 out of 28 steps = 89.29% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 26 out of 28 steps */
+.progress_bar_26_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_26_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 92.86%; /* 26 out of 28 steps = 92.86% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 27 out of 28 steps */
+.progress_bar_27_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_27_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 96.43%; /* 27 out of 28 steps = 96.43% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Progress bar for 28 out of 28 steps */
+.progress_bar_28_28 {
+    position: relative;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    margin: 24px 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress_bar_28_28::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; /* 28 out of 28 steps = 100% */
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* Style for the question counter */
+.formio-component-html37 p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* Style for the question text */
+.formio-component-html38 p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+/* Style for the number input */
+.formio-component-number input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s ease;
+}
+
+.formio-component-number input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(75, 40, 109, 0.1);
+}
+
+/* Style for the wizard navigation buttons */
+.formio-wizard-nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    padding: 0;
+    list-style: none;
+}
+
+.btn-wizard-nav-cancel {
+    display: none; /* Hide the Cancel button */
+}
+
+/* Common styles for navigation buttons */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-next,
+.btn-wizard-nav-submit {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Previous button - white with purple border and text */
+.btn-wizard-nav-previous {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-wizard-nav-previous:hover {
+    background-color: var(--telus-light-purple);
+}
+
+/* Next button - purple with white text */
+.btn-wizard-nav-next,
+.btn-wizard-nav-submit {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+}
+
+.btn-wizard-nav-next:hover,
+.btn-wizard-nav-submit:hover {
+    background-color: var(--telus-primary-focus);
+}
+
+/* Custom radio button styling for TELUS */
+.telus_radio_button_class .radio {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.telus_radio_button_class .form-check {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.telus_radio_button_class .form-check-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid #E5E5E5;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: white;
+    position: relative;
+}
+
+/* Hide the default radio button */
+.telus_radio_button_class .form-check-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style for the radio button text */
+.telus_radio_button_class .form-check-label span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Hover state - first element in the image */
+.telus_radio_button_class .form-check-label:hover {
+    border-color: var(--primary-color);
+    background-color: white;
+}
+
+/* Selected state - second element in the image */
+.telus_radio_button_class .form-check-input:checked + span {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.telus_radio_button_class .form-check-input:checked ~ .form-check-label,
+.telus_radio_button_class label:has(.form-check-input:checked) {
+    border-color: var(--primary-color);
+    background-color: white;
+}
+
+/* Focus state for accessibility */
+.telus_radio_button_class .form-check-input:focus ~ .form-check-label {
+    box-shadow: 0 0 0 3px rgba(75, 40, 109, 0.2);
+}
+
+/* Label styling */
+.telus_checkbox_class .col-form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: block;
+}
+
+/* Progress saved message styling */
+.progress_saved {
+    display: flex;
+    align-items: center;
+    background-color: #f5f9f5;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #2B8000;
+    font-weight: 500;
+}
+
+.progress_saved::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B8000'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+/* Fix for label positioning */
+.telus_radio_button_class .form-check-label.label-position-right {
+    padding-left: 20px;
+}
+
+/* Ensure the radio buttons are full width */
+.telus_radio_button_class .form-radio {
+    width: 100%;
+}
+
+/* Style for the diabetes BMI calculator link - reset to plain text */
+a[href="https://www.diabetes.ca/resources/tools-resources/body-mass-index-(bmi)-calculator"],
+a[href*="diabetes.ca"][href*="bmi-calculator"] {
+    display: inline;
+    color: inherit;
+    font-weight: normal;
+    text-decoration: underline;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+    transition: none;
+    margin: 0;
+}
+
+a[href="https://www.diabetes.ca/resources/tools-resources/body-mass-index-(bmi)-calculator"]:hover,
+a[href*="diabetes.ca"][href*="bmi-calculator"]:hover {
+    background-color: transparent;
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+a[href="https://www.diabetes.ca/resources/tools-resources/body-mass-index-(bmi)-calculator"]::after,
+a[href*="diabetes.ca"][href*="bmi-calculator"]::after {
+    content: "";
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form.io Existing Form POC</title>
+    <!-- Form.io CSS -->
+    <link rel="stylesheet" href="https://cdn.form.io/formiojs/formio.full.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Form.io JavaScript -->
+    <script src="https://cdn.form.io/formiojs/formio.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.form.io/js/formio.form.min.css">
+</head>
+<body>
+    <div id="formio"></div>
+
+    <script>
+        // URL of the form in the Form Builder
+        const yourFormUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznweightmanagmentsprint42';
+
+        // URL of the Language resource
+        const yourLanguageResourceUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language';
+
+        var languages = {};
+        // This function will fetch the translations and apply them
+        function setLanguage(lang) {
+       
+            Formio.fetch(yourLanguageResourceUrl + '/submission?data.language=' + lang)
+                .then(function(resp) {
+                return resp.json();
+                })
+                .then(function(result) {
+                if (!result || !result.length) {
+                    console.warn('No translations found for language:', lang);
+                    return;
+                }
+                // Get the 'translations' datamap from the first result
+                const translations = result[0].data.translations;
+                languages[lang] = translations;
+                // Add this language to the Form.io renderer
+                if (form) {
+                    form.addLanguage(lang, translations);
+                    // Apply the new language
+                    form.language = lang;
+                    // Force a redraw (necessary for english) 
+                    form.redraw();
+                }
+            });
+        }
+        // 1. Create the form instance
+        Formio.createForm(document.getElementById('formio'), yourFormUrl)
+        .then(function(formInstance) {
+            window.form = formInstance; // Store the form instance
+            // 2. Set the language.
+            setLanguage('en'); 
+        });
+    </script>
+</body>
+</html>
