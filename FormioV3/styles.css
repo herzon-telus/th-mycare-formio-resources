@@ -61,6 +61,26 @@ body {
     display: none !important; /* Hide the tabs with higher specificity */
 }
 
+/* Hide all wizard navigation headers - more generic approach to handle dynamic IDs */
+nav[aria-label="Wizard navigation"],
+[id^="wizard-"][id$="-header"],
+[ref^="wizard-"][ref$="-header"] {
+    display: none !important; /* Hide the tabs with higher specificity */
+}
+
+/* Alternative approach to hide just the pagination inside any wizard header */
+nav[aria-label="Wizard navigation"] .pagination,
+[id^="wizard-"][id$="-header"] .pagination,
+[ref^="wizard-"][ref$="-header"] .pagination {
+    display: none !important; /* Hide the pagination with higher specificity */
+}
+
+/* Target the specific ID from the latest HTML */
+#wizard-ek4tonv-header,
+[ref="wizard-ek4tonv-header"] {
+    display: none !important;
+}
+
 /* Remove the back arrow styling */
 .wizard-page::before {
     display: none;
