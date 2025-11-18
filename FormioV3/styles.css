@@ -1621,34 +1621,40 @@ body {
 }
 
 /* Custom radio button styling for TELUS */
-.telus_radio_button_class .radio {
+.telus_radio_button_class .radio,
+.formio-component-radio .radio {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-top: 16px;
 }
 
-.telus_radio_button_class .form-check {
+.telus_radio_button_class .form-check,
+.formio-component-radio .form-check {
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.telus_radio_button_class .form-check-label {
+.telus_radio_button_class .form-check-label,
+.formio-component-radio .form-check-label {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    padding: 16px 20px;
-    border: 2px solid #E5E5E5;
-    border-radius: 24px;
+    padding: 20px;
+    border: 1px solid #E5E5E5;
+    border-radius: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    background-color: white;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
     position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 /* Hide the default radio button */
-.telus_radio_button_class .form-check-input {
+.telus_radio_button_class .form-check-input,
+.formio-component-radio .form-check-input {
     position: absolute;
     opacity: 0;
     width: 0;
@@ -1656,32 +1662,76 @@ body {
 }
 
 /* Style for the radio button text */
-.telus_radio_button_class .form-check-label span {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-primary);
-}
-
-/* Hover state - first element in the image */
-.telus_radio_button_class .form-check-label:hover {
-    border-color: var(--primary-color);
-    background-color: white;
-}
-
-/* Selected state - second element in the image */
-.telus_radio_button_class .form-check-input:checked + span {
-    color: var(--primary-color);
+.telus_radio_button_class .form-check-label span,
+.formio-component-radio .form-check-label span {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 18px;
     font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+/* Add a description line below the main text */
+.telus_radio_button_class .form-check-label span::after,
+.formio-component-radio .form-check-label span::after {
+    content: "";
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 6px;
+}
+
+/* Specific descriptions for each option based on the image */
+.telus_radio_button_class .radio > div:nth-child(1) .form-check-label span::after,
+.formio-component-radio .radio > div:nth-child(1) .form-check-label span::after {
+    content: "Looking to reduce body weight for health";
+}
+
+.telus_radio_button_class .radio > div:nth-child(2) .form-check-label span::after,
+.formio-component-radio .radio > div:nth-child(2) .form-check-label span::after {
+    content: "Focus on maintaining a healthy weight";
+}
+
+.telus_radio_button_class .radio > div:nth-child(3) .form-check-label span::after,
+.formio-component-radio .radio > div:nth-child(3) .form-check-label span::after {
+    content: "Build muscle mass healthily";
+}
+
+.telus_radio_button_class .radio > div:nth-child(4) .form-check-label span::after,
+.formio-component-radio .radio > div:nth-child(4) .form-check-label span::after {
+    content: "Better nutrition and wellness";
+}
+
+/* Hover state */
+.telus_radio_button_class .form-check-label:hover,
+.formio-component-radio .form-check-label:hover {
+    border-color: #d0d0d0;
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Selected state */
+.telus_radio_button_class .form-check-input:checked + span,
+.formio-component-radio .form-check-input:checked + span {
+    color: var(--primary-color);
 }
 
 .telus_radio_button_class .form-check-input:checked ~ .form-check-label,
-.telus_radio_button_class label:has(.form-check-input:checked) {
+.telus_radio_button_class label:has(.form-check-input:checked),
+.formio-component-radio .form-check-input:checked ~ .form-check-label,
+.formio-component-radio label:has(.form-check-input:checked) {
     border-color: var(--primary-color);
-    background-color: white;
+    background-color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Focus state for accessibility */
-.telus_radio_button_class .form-check-input:focus ~ .form-check-label {
+.telus_radio_button_class .form-check-input:focus ~ .form-check-label,
+.formio-component-radio .form-check-input:focus ~ .form-check-label {
     box-shadow: 0 0 0 3px rgba(75, 40, 109, 0.2);
 }
 
