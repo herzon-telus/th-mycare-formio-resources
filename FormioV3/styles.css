@@ -1735,6 +1735,113 @@ body {
     box-shadow: 0 0 0 3px rgba(75, 40, 109, 0.2);
 }
 
+/* Custom checkbox styling for TELUS */
+.telus_checkbox_class .checkbox,
+.formio-component-checkbox .checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.telus_checkbox_class .form-check,
+.formio-component-checkbox .form-check {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.telus_checkbox_class .form-check-label,
+.formio-component-checkbox .form-check-label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #ffffff;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Add right arrow to each checkbox */
+.telus_checkbox_class .form-check-label::after,
+.formio-component-checkbox .form-check-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/* Hide the default checkbox */
+.telus_checkbox_class .form-check-input,
+.formio-component-checkbox .form-check-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style for the checkbox text */
+.telus_checkbox_class .form-check-label span,
+.formio-component-checkbox .form-check-label span {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+/* Add a description line below the main text */
+.telus_checkbox_class .form-check-label span::after,
+.formio-component-checkbox .form-check-label span::after {
+    content: "";
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Hover state */
+.telus_checkbox_class .form-check-label:hover,
+.formio-component-checkbox .form-check-label:hover {
+    border-color: #d0d0d0;
+    background-color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Selected state */
+.telus_checkbox_class .form-check-input:checked + span,
+.formio-component-checkbox .form-check-input:checked + span {
+    color: var(--primary-color);
+}
+
+.telus_checkbox_class .form-check-input:checked ~ .form-check-label,
+.telus_checkbox_class label:has(.form-check-input:checked),
+.formio-component-checkbox .form-check-input:checked ~ .form-check-label,
+.formio-component-checkbox label:has(.form-check-input:checked) {
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Focus state for accessibility */
+.telus_checkbox_class .form-check-input:focus ~ .form-check-label,
+.formio-component-checkbox .form-check-input:focus ~ .form-check-label {
+    box-shadow: 0 0 0 2px rgba(75, 40, 109, 0.2);
+}
+
 /* Label styling */
 .telus_checkbox_class .col-form-label {
     font-size: 16px;
