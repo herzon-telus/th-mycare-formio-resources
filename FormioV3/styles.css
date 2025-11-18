@@ -1780,6 +1780,106 @@ body {
     transform: translateY(-50%);
 }
 
+/* Checkbox styling - completely new approach */
+.formio-component-checkbox .form-check-label {
+    position: relative;
+    padding-right: 50px; /* Make room for the checkmark */
+}
+
+/* Add a placeholder for the checkmark */
+.formio-component-checkbox .form-check-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+/* Style for checked checkboxes - using attribute selector */
+.formio-component-checkbox .form-check-label:has(input[checked="true"])::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%234B286D' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Fallback for browsers that don't support :has() */
+.formio-component-questionDoAnyStatementsApplyToYouOption1 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption2 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption3 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption4 .form-check-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+/* Target the specific checkboxes by their component class - direct approach */
+.formio-component-questionDoAnyStatementsApplyToYouOption1 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption2 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption3 .form-check-label::after,
+.formio-component-questionDoAnyStatementsApplyToYouOption4 .form-check-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+/* Only show checkmark when checkbox is actually checked */
+#e99qmrh input:checked ~ .form-check-label,
+#e61i67q input:checked ~ .form-check-label,
+.formio-component-questionDoAnyStatementsApplyToYouOption1 input:checked ~ .form-check-label,
+.formio-component-questionDoAnyStatementsApplyToYouOption2 input:checked ~ .form-check-label,
+.formio-component-checkbox input:checked ~ .form-check-label {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%234B286D' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) center;
+}
+
+/* Inline style for the specific HTML structure */
+#e99qmrh .form-check-label,
+#e61i67q .form-check-label,
+#e9mokc .form-check-label,
+#e72hgvs .form-check-label {
+    position: relative;
+    padding-right: 50px;
+}
+
+#e99qmrh .form-check-label::after,
+#e61i67q .form-check-label::after,
+#e9mokc .form-check-label::after,
+#e72hgvs .form-check-label::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+/* Direct style for the checked inputs by ID */
+#e99qmrh input[checked="true"] ~ .form-check-label::after,
+#e61i67q input[checked="true"] ~ .form-check-label::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%234B286D' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 /* Hide the default checkbox */
 .telus_checkbox_class .form-check-input,
 .formio-component-checkbox .form-check-input {
