@@ -1,0 +1,138 @@
+/* 
+ * Button Positioning and Styling
+ * This CSS file modifies the positioning and styling of the form navigation buttons
+ */
+
+/* Common styles for all wizard navigation buttons */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-next,
+.btn-wizard-nav-cancel,
+.btn-wizard-nav-submit,
+button[ref="previous"],
+button[ref="next"],
+button[ref="cancel"],
+button.btn-wizard-nav {
+    background-color: var(--primary-color, #4B286D);
+    color: white !important;
+    border: 2px solid var(--primary-color, #4B286D);
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Hover state for all buttons */
+.btn-wizard-nav-previous:hover,
+.btn-wizard-nav-next:hover,
+.btn-wizard-nav-cancel:hover,
+.btn-wizard-nav-submit:hover,
+button[ref="previous"]:hover,
+button[ref="next"]:hover,
+button[ref="cancel"]:hover,
+button.btn-wizard-nav:hover {
+    background-color: var(--telus-primary-focus, #7C53A5);
+    border-color: var(--telus-primary-focus, #7C53A5);
+}
+
+/* Container for wizard navigation buttons - reset to allow absolute positioning */
+.formio-wizard-nav-container {
+    position: relative;
+    width: 100%;
+    min-height: 100px; /* Increased height to accommodate buttons */
+    margin-top: 32px;
+    padding: 0;
+    display: block;
+}
+
+/* Continue/Next button - centered at the bottom */
+.btn-wizard-nav-next,
+.btn-wizard-nav-submit,
+button[ref="next"],
+button.formio-wizard-nav-next,
+button.btn-wizard-nav-next {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    padding: 12px 24px !important;
+    min-width: 120px !important;
+    text-align: center !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+}
+
+/* Previous/Back button - positioned at the top left */
+.btn-wizard-nav-previous,
+button[ref="previous"],
+button.formio-wizard-nav-previous,
+button.btn-wizard-nav-previous {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 10px 20px !important;
+    min-width: 96px !important; /* 80% of 120px */
+    font-size: 0.9em !important; /* 90% of the original font size */
+    transform: scale(0.8) !important; /* 80% of the original size */
+    transform-origin: left top !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+    display: block !important; /* Force display */
+}
+
+/* Cancel button - positioned at the top right */
+.btn-wizard-nav-cancel,
+button[ref="cancel"],
+button.formio-wizard-nav-cancel,
+button.btn-wizard-nav-cancel {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    padding: 10px 20px !important;
+    min-width: 96px !important; /* 80% of 120px */
+    font-size: 0.9em !important; /* 90% of the original font size */
+    transform: scale(0.8) !important; /* 80% of the original size */
+    transform-origin: right top !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+    display: block !important; /* Force display */
+}
+
+/* Ensure the container has enough height when buttons are positioned absolutely */
+.formio-form {
+    padding-bottom: 100px; /* Add more space at the bottom of the form */
+    position: relative; /* Ensure proper positioning context */
+}
+
+/* Make sure the wizard page has enough space for the buttons */
+.wizard-page {
+    padding-bottom: 100px;
+    position: relative; /* Ensure proper positioning context */
+}
+
+/* Override any display:none that might be applied to buttons */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-next,
+.btn-wizard-nav-cancel,
+.btn-wizard-nav-submit,
+button[ref="previous"],
+button[ref="next"],
+button[ref="cancel"],
+button.btn-wizard-nav {
+    display: block !important;
+}
+
+/* Fix for any hidden buttons */
+.formio-wizard-nav-container button,
+.formio-form .formio-button-wrapper button,
+.formio-form .formio-wizard-nav-container button {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Additional selectors for Form.io buttons */
+.formio-form .btn-primary,
+.formio-form .btn-secondary,
+.formio-form .btn-success,
+.formio-form .btn-info,
+.formio-form .btn-warning,
+.formio-form .btn-danger {
+    background-color: var(--primary-color, #4B286D) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color, #4B286D) !important;
+}
