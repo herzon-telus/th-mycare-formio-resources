@@ -471,7 +471,10 @@ button.btn-wizard-nav-previous {
 .btn-wizard-nav-cancel,
 button[ref="cancel"],
 button.formio-wizard-nav-cancel,
-button.btn-wizard-nav-cancel {
+button.btn-wizard-nav-cancel,
+.formio-component-cancel button[ref="button"],
+.formio-component-cancel2 button[ref="button"],
+[class*="formio-component-cancel"] button[ref="button"] {
     position: absolute !important;
     top: 0 !important;
     right: 0 !important;
