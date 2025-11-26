@@ -20,6 +20,15 @@ button.btn-wizard-nav {
     transition: all 0.2s ease;
 }
 
+/* Override border-radius for buttons that should be 75% size */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-cancel,
+button[ref="previous"],
+button[ref="cancel"],
+button.btn-wizard-nav:not([ref="next"]):not(.btn-wizard-nav-submit) {
+    border-radius: 6px; /* 75% of 8px */
+}
+
 /* Hover state for all buttons */
 .btn-wizard-nav-previous:hover,
 .btn-wizard-nav-next:hover,
@@ -57,6 +66,19 @@ button.btn-wizard-nav-next {
     min-width: 120px !important;
     text-align: center !important;
     z-index: 10 !important; /* Ensure button is above other elements */
+    font-size: 1em !important; /* Ensure original font size */
+    transform-origin: center !important;
+}
+
+/* Ensure Next/Submit button is never scaled down */
+.formio-form .btn-wizard-nav-next,
+.formio-form .btn-wizard-nav-submit,
+.formio-form button[ref="next"],
+.formio-wizard-nav-container .btn-wizard-nav-next {
+    transform: translateX(-50%) !important;
+    font-size: 1em !important;
+    padding: 12px 24px !important;
+    min-width: 120px !important;
 }
 
 /* Previous/Back button - positioned at the top left */
@@ -67,10 +89,10 @@ button.btn-wizard-nav-previous {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
-    padding: 10px 20px !important;
-    min-width: 96px !important; /* 80% of 120px */
-    font-size: 0.9em !important; /* 90% of the original font size */
-    transform: scale(0.8) !important; /* 80% of the original size */
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
+    transform: scale(0.75) !important; /* 75% of the original size */
     transform-origin: left top !important;
     z-index: 10 !important; /* Ensure button is above other elements */
     display: block !important; /* Force display */
@@ -84,10 +106,10 @@ button.btn-wizard-nav-cancel {
     position: absolute !important;
     top: 0 !important;
     right: 0 !important;
-    padding: 10px 20px !important;
-    min-width: 96px !important; /* 80% of 120px */
-    font-size: 0.9em !important; /* 90% of the original font size */
-    transform: scale(0.8) !important; /* 80% of the original size */
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
+    transform: scale(0.75) !important; /* 75% of the original size */
     transform-origin: right top !important;
     z-index: 10 !important; /* Ensure button is above other elements */
     display: block !important; /* Force display */
@@ -126,13 +148,18 @@ button.btn-wizard-nav {
 }
 
 /* Additional selectors for Form.io buttons */
-.formio-form .btn-primary,
-.formio-form .btn-secondary,
-.formio-form .btn-success,
-.formio-form .btn-info,
-.formio-form .btn-warning,
-.formio-form .btn-danger {
+.formio-form .btn-primary:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-secondary:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-success:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-info:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-warning:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-danger:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]) {
     background-color: var(--primary-color, #4B286D) !important;
     color: white !important;
     border: 2px solid var(--primary-color, #4B286D) !important;
+    transform: scale(0.75) !important;
+    transform-origin: center !important;
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
 }
