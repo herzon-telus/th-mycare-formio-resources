@@ -1,0 +1,537 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* TELUS Brand Colors */
+:root {
+    --telus-primary: #4B286D;
+    --telus-primary-focus: #7C53A5;
+    --telus-secondary: #613889;
+    --telus-tertiary: #2B8000;
+    --telus-light-purple: #F3F0F7;
+    --primary-color: #4B286D;
+    --secondary-color: #2B8000;
+    --accent-color: #613889;
+    --text-primary: #2C2C2C;
+    --text-secondary: #666666;
+    --text-light: #999999;
+    --background: #FFFFFF;
+    --background-light: #F8F9FA;
+    --border-color: #E5E5E5;
+    --success-color: #28A745;
+    --warning-color: #FFC107;
+    --error-color: #DC3545;
+    --shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.08);
+    --button-border-radius: 24px;
+}
+
+/* Custom styles to match the provided HTML structure */
+.wizard-page {
+    position: relative;
+    background-color: #ffffff;
+    padding: 24px;
+}
+
+/* Style the wizard navigation header */
+[ref="wizard-ez9p3p-header"], [ref="wizard-ep4zva-header"] {
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px;
+    position: relative;
+}
+
+[ref="wizard-ez9p3p-header"] .pagination, [ref="wizard-ep4zva-header"] .pagination {
+    display: none; /* Hide the default pagination */
+}
+
+/* Hide tabs using the telus_hide_tabs class */
+.telus_hide_tabs nav[aria-label="Wizard navigation"] .pagination {
+    display: none !important; /* Hide the tabs with higher specificity */
+}
+
+/* Hide all wizard navigation headers - more generic approach to handle dynamic IDs */
+nav[aria-label="Wizard navigation"],
+[id^="wizard-"][id$="-header"],
+[ref^="wizard-"][ref$="-header"] {
+    display: none !important; /* Hide the tabs with higher specificity */
+}
+
+/* Alternative approach to hide just the pagination inside any wizard header */
+nav[aria-label="Wizard navigation"] .pagination,
+[id^="wizard-"][id$="-header"] .pagination,
+[ref^="wizard-"][ref$="-header"] .pagination {
+    display: none !important; /* Hide the pagination with higher specificity */
+}
+
+/* Target the specific ID from the latest HTML */
+#wizard-ek4tonv-header,
+[ref="wizard-ek4tonv-header"] {
+    display: none !important;
+}
+
+/* Remove the back arrow styling */
+.wizard-page::before {
+    display: none;
+}
+
+/* Style the main heading */
+.formio-component-html19 h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-align: left;
+    padding-left: 0;
+}
+
+/* Position the heading in the header */
+.formio-component-html19 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+    background-color: white;
+    z-index: 5;
+    margin-bottom: 16px;
+    padding-top: 24px;
+}
+
+/* Hide empty paragraphs */
+.formio-component-html20,
+.formio-component-html21,
+.formio-component-html24 {
+    display: none;
+}
+
+/* Create card containers for each service */
+.formio-component-html22,
+.formio-component-html26,
+.formio-component-html30 {
+    background-color: var(--background);
+    border-radius: 16px;
+    margin-bottom: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+    position: relative;
+    cursor: pointer;
+    min-height: 100px; /* Minimum height for cards */
+    height: auto; /* Allow height to adjust based on content */
+    transition: all 0.3s ease;
+    overflow: visible; /* Allow content to overflow for pricing tags */
+    z-index: 1; /* Base z-index */
+    border: 2px solid transparent;
+}
+
+/* Add hover effect to cards */
+.formio-component-html22:hover,
+.formio-component-html26:hover,
+.formio-component-html30:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--telus-light-purple);
+}
+
+/* Style the card titles */
+.formio-component-html22 h3,
+.formio-component-html26 h3,
+.formio-component-html30 h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: left;
+    padding-left: 0;
+    position: relative;
+    z-index: 5;
+    margin-left: 60px; /* Space for icon */
+}
+
+/* Style the card descriptions */
+.formio-component-html23 p,
+.formio-component-html27 p,
+.formio-component-html31 p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    margin-top: 0;
+    padding-left: 0;
+    line-height: 1.4;
+    display: block;
+}
+
+/* Position the descriptions below the cards */
+.formio-component-html23,
+.formio-component-html27,
+.formio-component-html31 {
+    position: relative;
+    margin-top: 10px; /* Space below the card */
+    text-align: left;
+    z-index: 4;
+    padding-left: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+
+/* Hide all pricing and subscription text except for the last selected one */
+.formio-component-html25,
+.formio-component-html28,
+.formio-component-html29,
+.formio-component-html33 {
+    display: none;
+}
+
+/* Only show the Weight Management pricing and subscription */
+.formio-component-html32,
+.formio-component-html33 {
+    display: block;
+}
+
+/* Style the pricing information */
+.formio-component-html25 span,
+.formio-component-html28 span,
+.formio-component-html32 span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    margin-top: 5px;
+    margin-left: 0; /* No need for padding, using grid */
+}
+
+/* Primary Care pricing - green */
+.formio-component-html25 span {
+    background-color: #e8f5e9;
+    color: var(--secondary-color);
+    font-weight: 500;
+    display: inline-block;
+    clear: both;
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin-left: 0;
+    font-size: 13px;
+}
+
+/* Adjust spacing for card content */
+.formio-component-html22 h3,
+.formio-component-html26 h3,
+.formio-component-html30 h3 {
+    margin-bottom: 8px;
+}
+
+/* Ensure the description text is properly positioned */
+.formio-component-html23,
+.formio-component-html27,
+.formio-component-html31 {
+    margin-top: 0;
+}
+
+/* Adjust the card padding to match the image */
+.formio-component-html22,
+.formio-component-html26,
+.formio-component-html30 {
+    padding: 16px 16px 16px 80px;
+}
+
+/* Menopause Care pricing - blue */
+.formio-component-html28 span {
+    color: var(--primary-color);
+    font-weight: 500;
+    background-color: var(--telus-light-purple);
+    padding: 6px 12px;
+    border-radius: 16px;
+    display: inline-block;
+}
+
+/* Weight Management pricing - blue */
+.formio-component-html32 span {
+    color: var(--primary-color);
+    font-weight: 500;
+    background-color: var(--telus-light-purple);
+    padding: 6px 12px;
+    border-radius: 16px;
+    display: inline-block;
+}
+
+/* Position the pricing info at the bottom of the page */
+.formio-component-html25,
+.formio-component-html28,
+.formio-component-html32 {
+    position: fixed;
+    bottom: 40px;
+    left: 47px;
+    margin-top: 0;
+    margin-left: 0;
+    z-index: 10;
+}
+
+/* Style the subscription text */
+.formio-component-html29 span,
+.formio-component-html33 span {
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+    margin-left: 0; /* No need for padding, using grid */
+}
+
+/* Position the subscription text at the bottom of the page */
+.formio-component-html29,
+.formio-component-html33 {
+    position: fixed;
+    bottom: 20px;
+    left: 47px;
+    margin-top: 0;
+    margin-left: 0;
+    z-index: 10;
+}
+
+/* Add icons for each service */
+.formio-component-html22::before,
+.formio-component-html26::before,
+.formio-component-html30::before {
+    content: "";
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-light);
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+/* Primary Care icon */
+.formio-component-html22::before {
+    background-color: #e8f5e9;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232B8000'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+}
+
+/* Menopause Care icon */
+.formio-component-html26::before {
+    background-color: var(--telus-light-purple);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234B286D'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E");
+}
+
+/* Weight Management icon */
+.formio-component-html30::before {
+    background-color: var(--telus-light-purple);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234B286D'%3E%3Cpath d='M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z'/%3E%3C/svg%3E");
+}
+
+/* Add right arrow to each card */
+.formio-component-html22::after,
+.formio-component-html26::after,
+.formio-component-html30::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23999999'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 20;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+/* New styles for the service cards based on the image */
+
+/* Style the header with back button */
+.card-header {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px;
+    background-color: #fff;
+}
+
+/* 
+ * Button Positioning and Styling
+ * This CSS file modifies the positioning and styling of the form navigation buttons
+ */
+
+/* Common styles for all wizard navigation buttons */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-next,
+.btn-wizard-nav-cancel,
+.btn-wizard-nav-submit,
+button[ref="previous"],
+button[ref="next"],
+button[ref="cancel"],
+button.btn-wizard-nav {
+    background-color: var(--primary-color, #4B286D);
+    color: white !important;
+    border: 2px solid var(--primary-color, #4B286D);
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Override border-radius for buttons that should be 75% size */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-cancel,
+button[ref="previous"],
+button[ref="cancel"],
+button.btn-wizard-nav:not([ref="next"]):not(.btn-wizard-nav-submit) {
+    border-radius: 6px; /* 75% of 8px */
+}
+
+/* Hover state for all buttons */
+.btn-wizard-nav-previous:hover,
+.btn-wizard-nav-next:hover,
+.btn-wizard-nav-cancel:hover,
+.btn-wizard-nav-submit:hover,
+button[ref="previous"]:hover,
+button[ref="next"]:hover,
+button[ref="cancel"]:hover,
+button.btn-wizard-nav:hover {
+    background-color: var(--telus-primary-focus, #7C53A5);
+    border-color: var(--telus-primary-focus, #7C53A5);
+}
+
+/* Container for wizard navigation buttons - reset to allow absolute positioning */
+.formio-wizard-nav-container {
+    position: relative;
+    width: 100%;
+    min-height: 100px; /* Increased height to accommodate buttons */
+    margin-top: 32px;
+    padding: 0;
+    display: block;
+}
+
+/* Continue/Next button - centered at the bottom */
+.btn-wizard-nav-next,
+.btn-wizard-nav-submit,
+button[ref="next"],
+button.formio-wizard-nav-next,
+button.btn-wizard-nav-next {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    padding: 12px 24px !important;
+    min-width: 120px !important;
+    text-align: center !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+    font-size: 1em !important; /* Ensure original font size */
+    transform-origin: center !important;
+}
+
+/* Ensure Next/Submit button is never scaled down */
+.formio-form .btn-wizard-nav-next,
+.formio-form .btn-wizard-nav-submit,
+.formio-form button[ref="next"],
+.formio-wizard-nav-container .btn-wizard-nav-next {
+    transform: translateX(-50%) !important;
+    font-size: 1em !important;
+    padding: 12px 24px !important;
+    min-width: 120px !important;
+}
+
+/* Previous/Back button - positioned at the top left */
+.btn-wizard-nav-previous,
+button[ref="previous"],
+button.formio-wizard-nav-previous,
+button.btn-wizard-nav-previous {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
+    transform: scale(0.75) !important; /* 75% of the original size */
+    transform-origin: left top !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+    display: block !important; /* Force display */
+}
+
+/* Cancel button - positioned at the top right */
+.btn-wizard-nav-cancel,
+button[ref="cancel"],
+button.formio-wizard-nav-cancel,
+button.btn-wizard-nav-cancel,
+.formio-component-cancel button[ref="button"],
+.formio-component-cancel2 button[ref="button"],
+[class*="formio-component-cancel"] button[ref="button"] {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
+    transform: scale(0.75) !important; /* 75% of the original size */
+    transform-origin: right top !important;
+    z-index: 10 !important; /* Ensure button is above other elements */
+    display: block !important; /* Force display */
+}
+
+/* Ensure the container has enough height when buttons are positioned absolutely */
+.formio-form {
+    padding-bottom: 100px; /* Add more space at the bottom of the form */
+    position: relative; /* Ensure proper positioning context */
+}
+
+/* Make sure the wizard page has enough space for the buttons */
+.wizard-page {
+    padding-bottom: 100px;
+    position: relative; /* Ensure proper positioning context */
+}
+
+/* Override any display:none that might be applied to buttons */
+.btn-wizard-nav-previous,
+.btn-wizard-nav-next,
+.btn-wizard-nav-cancel,
+.btn-wizard-nav-submit,
+button[ref="previous"],
+button[ref="next"],
+button[ref="cancel"],
+button.btn-wizard-nav {
+    display: block !important;
+}
+
+/* Fix for any hidden buttons */
+.formio-wizard-nav-container button,
+.formio-form .formio-button-wrapper button,
+.formio-form .formio-wizard-nav-container button {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Additional selectors for Form.io buttons */
+.formio-form .btn-primary:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-secondary:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-success:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-info:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-warning:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]),
+.formio-form .btn-danger:not(.btn-wizard-nav-next):not(.btn-wizard-nav-submit):not([ref="next"]) {
+    background-color: var(--primary-color, #4B286D) !important;
+    color: white !important;
+    border: 2px solid var(--primary-color, #4B286D) !important;
+    transform: scale(0.75) !important;
+    transform-origin: center !important;
+    padding: 9px 18px !important; /* 75% of original padding (12px 24px) */
+    min-width: 90px !important; /* 75% of 120px */
+    font-size: 0.85em !important; /* 85% of the original font size */
+}
