@@ -22,32 +22,27 @@
     <div id="formio"></div>
 
 <script>
-    // URLs del formulario y resources de idioma
     const formUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznweightmanagmentsprint42';
-
-    const languageResourceGlobal = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/language';
-    const languageResourceLocal  = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/languageformweightmanagement';
+    const baseUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/';
 
     var languages = {};
+    var languageResourceGlobal = null;
+    var languageResourceLocal  = null;
 
-    // --- Utilidad para mergear objetos (override del local sobre el global) ---
+    // --- Utilidad para mergear objetos ---
     function deepMerge(target, source) {
         for (let key in source) {
-            if (
-                source[key] &&
-                typeof source[key] === 'object' &&
-                !Array.isArray(source[key])
-            ) {
+            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
                 if (!target[key]) target[key] = {};
                 deepMerge(target[key], source[key]);
             } else {
-                target[key] = source[key]; // override
+                target[key] = source[key];
             }
         }
         return target;
     }
 
-    // --- Función para obtener las traducciones desde un resource ---
+    // --- Carga un resource de idioma ---
     function fetchTranslations(resourceUrl, lang) {
         return Formio.fetch(resourceUrl + '/submission?data.language=' + lang)
             .then(resp => resp.json())
@@ -61,16 +56,13 @@
             });
     }
 
-    // --- Nueva función setLanguage con dos resources ---
+    // --- setLanguage usando resources dinámicos ---
     function setLanguage(lang) {
-
         Promise.all([
             fetchTranslations(languageResourceGlobal, lang),
             fetchTranslations(languageResourceLocal, lang)
         ])
         .then(([globalTranslations, localTranslations]) => {
-
-            // Merge: local overridea global
             const merged = deepMerge(globalTranslations, localTranslations);
 
             languages[lang] = merged;
@@ -83,13 +75,37 @@
         });
     }
 
-    // Crear el formulario
+    // --- Crear formulario ---
     Formio.createForm(document.getElementById('formio'), formUrl)
     .then(function(formInstance) {
+
+        // Obtener los tags del formulario
+        fetch(formUrl)
+            .then(response => response.json())
+            .then(data => {
+                const tags = data.tags || [];
+
+                if (tags.length !== 2) {
+                    console.error("Se esperaban exactamente 2 tags, pero llegaron:", tags);
+                    return;
+                }
+
+                // Construcción dinámica de resources usando los tags
+                languageResourceGlobal = baseUrl + tags[0];
+                languageResourceLocal  = baseUrl + tags[1];
+
+                console.log("Global Resource:", languageResourceGlobal);
+                console.log("Local Resource:", languageResourceLocal);
+
+                // Set initial language
+                setLanguage('en');
+            })
+            .catch(error => console.error('Error fetching form data:', error));
+
         window.form = formInstance;
-        setLanguage('en');
     });
 </script>
+
 
 </body>
 </html>
