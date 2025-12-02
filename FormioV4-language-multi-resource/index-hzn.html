@@ -58,6 +58,22 @@
 
     // --- setLanguage usando resources dinámicos ---
     function setLanguage(lang) {
+        // If we only have global resource, just fetch that one
+        if (!languageResourceLocal) {
+            fetchTranslations(languageResourceGlobal, lang)
+                .then(translations => {
+                    languages[lang] = translations;
+
+                    if (window.form) {
+                        form.addLanguage(lang, translations);
+                        form.language = lang;
+                        form.redraw();
+                    }
+                });
+            return;
+        }
+
+        // If we have both resources, fetch both and merge them
         Promise.all([
             fetchTranslations(languageResourceGlobal, lang),
             fetchTranslations(languageResourceLocal, lang)
@@ -84,18 +100,26 @@
             .then(response => response.json())
             .then(data => {
                 const tags = data.tags || [];
+                console.log("Tags encontrados:", JSON.stringify(tags));
 
-                if (tags.length !== 2) {
-                    console.error("Se esperaban exactamente 2 tags, pero llegaron:", tags);
+                if (tags.length === 0) {
+                    console.error("No se encontraron tags en el formulario");
                     return;
                 }
 
                 // Construcción dinámica de resources usando los tags
-                languageResourceGlobal = baseUrl + tags[0];
-                languageResourceLocal  = baseUrl + tags[1];
-
-                console.log("Global Resource:", languageResourceGlobal);
-                console.log("Local Resource:", languageResourceLocal);
+                if (tags.length === 1) {
+                    // Si solo hay un tag, usarlo como resource global
+                    languageResourceGlobal = baseUrl + tags[0];
+                    languageResourceLocal = null;
+                    console.log("Solo un resource encontrado (global):", languageResourceGlobal);
+                } else {
+                    // Si hay dos o más tags, usar el primero como global y el segundo como local
+                    languageResourceGlobal = baseUrl + tags[0];
+                    languageResourceLocal = baseUrl + tags[1];
+                    console.log("Global Resource:", languageResourceGlobal);
+                    console.log("Local Resource:", languageResourceLocal);
+                }
 
                 // Set initial language
                 setLanguage('en');
