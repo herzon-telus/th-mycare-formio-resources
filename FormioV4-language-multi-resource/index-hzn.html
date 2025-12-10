@@ -29,7 +29,7 @@
     var languageResourceGlobal = null;
     var languageResourceLocal  = null;
 
-    // --- Utilidad para mergear objetos ---
+    // --- Utility for merging objects ---
     function deepMerge(target, source) {
         for (let key in source) {
             if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
@@ -42,7 +42,7 @@
         return target;
     }
 
-    // --- Carga un resource de idioma ---
+    // --- Load a language resource ---
     function fetchTranslations(resourceUrl, lang) {
         return Formio.fetch(resourceUrl + '/submission?data.language=' + lang)
             .then(resp => resp.json())
@@ -56,7 +56,7 @@
             });
     }
 
-    // --- setLanguage usando resources dinámicos ---
+    // --- setLanguage using dynamic resources ---
     function setLanguage(lang) {
         // If we only have global resource, just fetch that one
         if (!languageResourceLocal) {
@@ -91,30 +91,30 @@
         });
     }
 
-    // --- Crear formulario ---
+    // --- Create form ---
     Formio.createForm(document.getElementById('formio'), formUrl)
     .then(function(formInstance) {
 
-        // Obtener los tags del formulario
+        // Get form tags
         fetch(formUrl)
             .then(response => response.json())
             .then(data => {
                 const tags = data.tags || [];
-                console.log("Tags encontrados:", JSON.stringify(tags));
+                console.log("Tags found:", JSON.stringify(tags));
 
                 if (tags.length === 0) {
-                    console.error("No se encontraron tags en el formulario");
+                    console.error("No tags found in the form");
                     return;
                 }
 
-                // Construcción dinámica de resources usando los tags
+                // Dynamic construction of resources using tags
                 if (tags.length === 1) {
-                    // Si solo hay un tag, usarlo como resource global
+                    // If there's only one tag, use it as global resource
                     languageResourceGlobal = baseUrl + tags[0];
                     languageResourceLocal = null;
-                    console.log("Solo un resource encontrado (global):", languageResourceGlobal);
+                    console.log("Only one resource found (global):", languageResourceGlobal);
                 } else {
-                    // Si hay dos o más tags, usar el primero como global y el segundo como local
+                    // If there are two or more tags, use the first as global and the second as local
                     languageResourceGlobal = baseUrl + tags[0];
                     languageResourceLocal = baseUrl + tags[1];
                     console.log("Global Resource:", languageResourceGlobal);
