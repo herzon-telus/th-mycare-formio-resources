@@ -535,3 +535,179 @@ button.btn-wizard-nav {
     min-width: 90px !important; /* 75% of 120px */
     font-size: 0.85em !important; /* 85% of the original font size */
 }
+
+/* TELUS Radio Button Styling - Comprehensive approach */
+
+/* Target all radio components in Form.io */
+.formio-component-radio,
+.formio-component[class*='radio'],
+.telus_radio_style_class,
+div[class*='radio'],
+.form-radio,
+.form-group[ref*='radio'] {
+    margin-bottom: 15px !important;
+}
+
+/* Style the container of each radio option */
+.formio-component-radio .form-check,
+.formio-component[class*='radio'] .form-check,
+.telus_radio_style_class .form-check,
+div[class*='radio'] .form-check,
+.form-radio .form-check,
+.form-group[ref*='radio'] .form-check,
+.radio label,
+.form-radio label {
+    margin-bottom: 10px !important;
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Style the label for each radio option */
+.formio-component-radio .form-check-label,
+.formio-component[class*='radio'] .form-check-label,
+.telus_radio_style_class .form-check-label,
+div[class*='radio'] .form-check-label,
+.form-radio .form-check-label,
+.form-group[ref*='radio'] .form-check-label,
+.radio label,
+.form-radio label {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 15px 20px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: white !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+    position: relative !important;
+}
+
+/* Hide the default radio input */
+.formio-component-radio .form-check-input,
+.formio-component[class*='radio'] .form-check-input,
+.telus_radio_style_class .form-check-input,
+div[class*='radio'] .form-check-input,
+.form-radio .form-check-input,
+.form-group[ref*='radio'] .form-check-input,
+.radio input[type="radio"],
+.form-radio input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    cursor: pointer !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* Style for the selected radio option */
+.formio-component-radio .form-check-input:checked + .form-check-label,
+.formio-component[class*='radio'] .form-check-input:checked + .form-check-label,
+.telus_radio_style_class .form-check-input:checked + .form-check-label,
+div[class*='radio'] .form-check-input:checked + .form-check-label,
+.form-radio .form-check-input:checked + .form-check-label,
+.form-group[ref*='radio'] .form-check-input:checked + .form-check-label,
+.radio input[type="radio"]:checked + label,
+.form-radio input[type="radio"]:checked + label {
+    border: 2px solid var(--telus-primary) !important;
+    background-color: var(--telus-light-purple) !important;
+}
+
+/* Add checkmark icon for selected option */
+.formio-component-radio .form-check-input:checked + .form-check-label::after,
+.formio-component[class*='radio'] .form-check-input:checked + .form-check-label::after,
+.telus_radio_style_class .form-check-input:checked + .form-check-label::after,
+div[class*='radio'] .form-check-input:checked + .form-check-label::after,
+.form-radio .form-check-input:checked + .form-check-label::after,
+.form-group[ref*='radio'] .form-check-input:checked + .form-check-label::after,
+.radio input[type="radio"]:checked + label::after,
+.form-radio input[type="radio"]:checked + label::after {
+    content: "" !important;
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    background-color: var(--telus-primary) !important;
+    border-radius: 50% !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E") !important;
+    background-size: 16px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+}
+
+/* Alternative approach for the checkmark using a different selector pattern */
+.formio-component-radio .form-check:has(.form-check-input:checked) .form-check-label,
+.formio-component[class*='radio'] .form-check:has(.form-check-input:checked) .form-check-label,
+.telus_radio_style_class .form-check:has(.form-check-input:checked) .form-check-label,
+div[class*='radio'] .form-check:has(.form-check-input:checked) .form-check-label,
+.form-radio .form-check:has(.form-check-input:checked) .form-check-label,
+.form-group[ref*='radio'] .form-check:has(.form-check-input:checked) .form-check-label {
+    border: 2px solid var(--telus-primary) !important;
+    background-color: var(--telus-light-purple) !important;
+}
+
+.formio-component-radio .form-check:has(.form-check-input:checked) .form-check-label::after,
+.formio-component[class*='radio'] .form-check:has(.form-check-input:checked) .form-check-label::after,
+.telus_radio_style_class .form-check:has(.form-check-input:checked) .form-check-label::after,
+div[class*='radio'] .form-check:has(.form-check-input:checked) .form-check-label::after,
+.form-radio .form-check:has(.form-check-input:checked) .form-check-label::after,
+.form-group[ref*='radio'] .form-check:has(.form-check-input:checked) .form-check-label::after {
+    content: "" !important;
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    background-color: var(--telus-primary) !important;
+    border-radius: 50% !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z'/%3E%3C/svg%3E") !important;
+    background-size: 16px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    position: absolute !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+}
+
+/* Style for hover state */
+.formio-component-radio .form-check-label:hover,
+.formio-component[class*='radio'] .form-check-label:hover,
+.telus_radio_style_class .form-check-label:hover,
+div[class*='radio'] .form-check-label:hover,
+.form-radio .form-check-label:hover,
+.form-group[ref*='radio'] .form-check-label:hover,
+.radio label:hover,
+.form-radio label:hover {
+    border-color: var(--telus-primary-focus) !important;
+}
+
+/* Style for focus state */
+.formio-component-radio .form-check-input:focus + .form-check-label,
+.formio-component[class*='radio'] .form-check-input:focus + .form-check-label,
+.telus_radio_style_class .form-check-input:focus + .form-check-label,
+div[class*='radio'] .form-check-input:focus + .form-check-label,
+.form-radio .form-check-input:focus + .form-check-label,
+.form-group[ref*='radio'] .form-check-input:focus + .form-check-label,
+.radio input[type="radio"]:focus + label,
+.form-radio input[type="radio"]:focus + label {
+    box-shadow: 0 0 0 3px rgba(75, 40, 109, 0.2) !important;
+}
+
+/* Direct styling for the radio component */
+.formio-component-radio,
+.formio-component[class*='radio'] {
+    --telus-primary: #4B286D;
+    --telus-primary-focus: #7C53A5;
+    --telus-light-purple: #F3F0F7;
+    --border-color: #E5E5E5;
+    --text-primary: #2C2C2C;
+}
