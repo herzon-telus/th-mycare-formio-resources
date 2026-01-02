@@ -16,118 +16,141 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         crossorigin="anonymous"
         referrerpolicy="no-referrer"/>
-
 </head>
 <body>
     <div id="formio"></div>
 
 <script>
-    const formUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznpocauth';
-    const baseUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/';
+  const formUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/hznpocauth';
+  const baseUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu/';
+  const projectUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu';
 
-    var languages = {};
-    var languageResourceGlobal = null;
-    var languageResourceLocal  = null;
+  var OAUTH_TOKEN = 'PORTAL_TOKEN';
 
-    // --- Utility for merging objects ---
-    function deepMerge(target, source) {
-        for (let key in source) {
-            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-                if (!target[key]) target[key] = {};
-                deepMerge(target[key], source[key]);
-            } else {
-                target[key] = source[key];
-            }
-        }
-        return target;
+  var languages = {};
+  var languageResourceGlobal = null;
+  var languageResourceLocal  = null;
+
+  /* -------------------------
+     Utilities
+  --------------------------*/
+  function deepMerge(target, source) {
+    for (let key in source) {
+      if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+        if (!target[key]) target[key] = {};
+        deepMerge(target[key], source[key]);
+      } else {
+        target[key] = source[key];
+      }
+    }
+    return target;
+  }
+
+  async function fetchTranslations(resourceUrl, lang) {
+    try {
+      const resp = await Formio.fetch(resourceUrl + '/submission?data.language=' + lang);
+      const result = await resp.json();
+      if (!result || !result.length) return {};
+      return result[0].data.translations || {};
+    } catch (err) {
+      console.error("Error loading translations:", resourceUrl, err);
+      return {};
+    }
+  }
+
+  async function setLanguage(lang) {
+    if (!languageResourceLocal) {
+      const translations = await fetchTranslations(languageResourceGlobal, lang);
+      languages[lang] = translations;
+      if (window.form) {
+        form.addLanguage(lang, translations);
+        form.language = lang;
+        form.redraw();
+      }
+      return;
     }
 
-    // --- Load a language resource ---
-    function fetchTranslations(resourceUrl, lang) {
-        return Formio.fetch(resourceUrl + '/submission?data.language=' + lang)
-            .then(resp => resp.json())
-            .then(result => {
-                if (!result || !result.length) return {};
-                return result[0].data.translations || {};
-            })
-            .catch(err => {
-                console.error("Error loading from resource:", resourceUrl, err);
-                return {};
-            });
+    const [globalTranslations, localTranslations] = await Promise.all([
+      fetchTranslations(languageResourceGlobal, lang),
+      fetchTranslations(languageResourceLocal, lang)
+    ]);
+
+    const merged = deepMerge(globalTranslations, localTranslations);
+    languages[lang] = merged;
+
+    if (window.form) {
+      form.addLanguage(lang, merged);
+      form.language = lang;
+      form.redraw();
     }
+  }
 
-    // --- setLanguage using dynamic resources ---
-    function setLanguage(lang) {
-        // If we only have global resource, just fetch that one
-        if (!languageResourceLocal) {
-            fetchTranslations(languageResourceGlobal, lang)
-                .then(translations => {
-                    languages[lang] = translations;
+  /* -------------------------
+     TOKEN SWAP
+  --------------------------*/
+  async function doTokenSwap() {
+    try {
+      let headers = new Formio.Headers();
+      console.log('Auth Token:', OAUTH_TOKEN);
+      headers.set('Authorization', 'Bearer ' + OAUTH_TOKEN);
 
-                    if (window.form) {
-                        form.addLanguage(lang, translations);
-                        form.language = lang;
-                        form.redraw();
-                    }
-                });
-            return;
-        }
+      Formio.setBaseUrl(projectUrl);
+      Formio.setProjectUrl(projectUrl);
 
-        // If we have both resources, fetch both and merge them
-        Promise.all([
-            fetchTranslations(languageResourceGlobal, lang),
-            fetchTranslations(languageResourceLocal, lang)
-        ])
-        .then(([globalTranslations, localTranslations]) => {
-            const merged = deepMerge(globalTranslations, localTranslations);
+      //Formio.currentUser = null; // <-- HERE I WANT TO CLEAR/DELETE CACHED TOKEN, THIS LINE IS NOT WORKING
+      //Formio.cache = {};         // <-- HERE I WANT TO CLEAR/DELETE CACHED TOKEN, THIS LINE IS NOT WORKING
 
-            languages[lang] = merged;
+      var formio = new Formio(projectUrl);
+      let user = await formio.currentUser({
+        external: true,
+        header: headers
+      });
 
-            if (window.form) {
-                form.addLanguage(lang, merged);
-                form.language = lang;
-                form.redraw();
-            }
-        });
+      console.log('Token swap successful:', user);
+      return user;
+    } catch (err) {
+      console.error('Token swap failed:', err);
+      throw err;
     }
+  }
 
-    // --- Create form ---
-    Formio.createForm(document.getElementById('formio'), formUrl)
-    .then(function(formInstance) {
+  /* -------------------------
+     INITIALIZATION
+  --------------------------*/
+  async function initialize() {
+    try {
+      await doTokenSwap();
 
-        // Get form tags
-        fetch(formUrl)
-            .then(response => response.json())
-            .then(data => {
-                const tags = data.tags || [];
-                console.log("Tags found:", JSON.stringify(tags));
+      const formInstance = await Formio.createForm(
+        document.getElementById('formio'),
+        formUrl
+      );
+      window.form = formInstance;
 
-                if (tags.length === 0) {
-                    console.error("No tags found in the form");
-                    return;
-                }
+      const response = await fetch(formUrl);
+      const data = await response.json();
+      const tags = data.tags || [];
 
-                // Dynamic construction of resources using tags
-                if (tags.length === 1) {
-                    // If there's only one tag, use it as global resource
-                    languageResourceGlobal = baseUrl + tags[0];
-                    languageResourceLocal = null;
-                    console.log("Only one resource found (global):", languageResourceGlobal);
-                } else {
-                    // If there are two or more tags, use the first as global and the second as local
-                    languageResourceGlobal = baseUrl + tags[0];
-                    languageResourceLocal = baseUrl + tags[1];
-                    console.log("Global Resource:", languageResourceGlobal);
-                    console.log("Local Resource:", languageResourceLocal);
-                }
+      if (!tags.length) {
+        console.error('No tags found');
+        return;
+      }
 
-                // Set initial language
-                setLanguage('en');
-            })
-            .catch(error => console.error('Error fetching form data:', error));
+      if (tags.length === 1) {
+        languageResourceGlobal = baseUrl + tags[0];
+      } else {
+        languageResourceGlobal = baseUrl + tags[0];
+        languageResourceLocal  = baseUrl + tags[1];
+      }
 
-        window.form = formInstance;
-    });
+      await setLanguage('en');
+    } catch (err) {
+      console.error('Initialization failed:', err);
+    }
+  }
+
+  // Ejecutamos la inicialización
+  initialize();
 </script>
 
 
