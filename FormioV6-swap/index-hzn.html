@@ -26,6 +26,8 @@
   const projectUrl = 'https://form-io.preprod.babylonbytelushealth.com/qiedzdtecdtedeu';
 
   var OAUTH_TOKEN = 'PORTAL_TOKEN';
+  OAUTH_TOKEN = 'bad_token_to_test_error_handling';
+
 
   var languages = {};
   var languageResourceGlobal = null;
@@ -110,7 +112,8 @@
       return user;
     } catch (err) {
       console.error('Token swap failed:', err);
-      throw err;
+      //throw err;
+      return;
     }
   }
 
