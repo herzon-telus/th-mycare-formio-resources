@@ -27,8 +27,7 @@
 
   var OAUTH_TOKEN = 'PORTAL_TOKEN';
   OAUTH_TOKEN = 'bad_token_to_test_error_handling';
-
-
+ 
   var languages = {};
   var languageResourceGlobal = null;
   var languageResourceLocal  = null;
@@ -109,6 +108,7 @@
       });
 
       console.log('Token swap successful:', user);
+      console.log('Formio Token:', Formio.getToken());
       return user;
     } catch (err) {
       console.error('Token swap failed:', err);
