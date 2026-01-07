@@ -1,0 +1,2958 @@
+{
+  "title": "MyCare Forms",
+  "version": "2.0.0",
+  "description": "This project will contain all forms used in the MyCare app, including intake forms, initial consultation forms, and follow-up forms.",
+  "name": "qiedzdtecdtedeu",
+  "roles": {
+    "administrator": {
+      "title": "Administrator",
+      "description": "A role for Administrative Users.",
+      "admin": true,
+      "default": false
+    },
+    "authenticated": {
+      "title": "Authenticated",
+      "description": "A role for Authenticated Users.",
+      "admin": false,
+      "default": false
+    },
+    "anonymous": {
+      "title": "Anonymous",
+      "description": "A role for Anonymous Users.",
+      "admin": false,
+      "default": true
+    }
+  },
+  "forms": {
+    "hznweightmanagmentsprint42JayVersion": {
+      "title": "HZN - Weight managment - Sprint 42 - Jay Version",
+      "type": "form",
+      "name": "hznweightmanagmentsprint42JayVersion",
+      "path": "hznweightmanagmentsprint42jayversion",
+      "pdfComponents": [
+        {
+          "key": "patientId",
+          "type": "textfield",
+          "label": "Patient ID"
+        },
+        {
+          "key": "is18OrOlder",
+          "type": "radio",
+          "label": "step_1_question"
+        },
+        {
+          "key": "measurementUnit",
+          "type": "select",
+          "label": "step_2_question"
+        },
+        {
+          "key": "height",
+          "type": "number",
+          "label": "step_2_height"
+        },
+        {
+          "key": "weight",
+          "type": "number",
+          "label": "step_2_weight"
+        },
+        {
+          "key": "bmi",
+          "type": "number",
+          "label": "BMI"
+        },
+        {
+          "key": "pregnancyStatus",
+          "type": "radio",
+          "label": "step_4_question"
+        },
+        {
+          "key": "medicalConditions",
+          "type": "selectboxes",
+          "label": "step_5_question"
+        },
+        {
+          "key": "mentalHealthConditions",
+          "type": "selectboxes",
+          "label": "step_6_question"
+        },
+        {
+          "key": "gastrointestinalIssues",
+          "type": "selectboxes",
+          "label": "step_7_question"
+        },
+        {
+          "key": "diagnosedConditions",
+          "type": "selectboxes",
+          "label": "step_8_question"
+        },
+        {
+          "key": "lifestyle",
+          "type": "selectboxes",
+          "label": "step_9_question"
+        },
+        {
+          "key": "confirmation",
+          "type": "radio",
+          "label": "step_10_question"
+        }
+      ],
+      "display": "wizard",
+      "action": "",
+      "tags": [
+        "languageformweightmanagement"
+      ],
+      "settings": {
+        "share": {
+          "theme": "",
+          "showHeader": true
+        },
+        "pageSize": "Letter",
+        "layout": "Portrait",
+        "fontSize": 12,
+        "header": "<div style=\"text-align: center;\">\n      <h1>{{ form.title }}</h1>\n    </div>\n    <hr style=\"margin: 0;\">",
+        "footer": "<div style=\"text-align: center;\">\n  <p>Page <span class=\"pageNumber\"></span> of <span class=\"totalPages\"></span></p>\n</div>",
+        "margins": "",
+        "hideTitle": true,
+        "theme": null,
+        "viewAsHtml": false
+      },
+      "components": [
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Program Info ",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "programIntro",
+          "logic": [
+            {
+              "name": "NotElibibleLogic",
+              "trigger": {
+                "type": "simple",
+                "simple": {
+                  "show": true,
+                  "conjunction": "all",
+                  "conditions": [
+                    {
+                      "component": "radio1",
+                      "operator": "isEqual",
+                      "value": "iAmCurrentlyPregnant"
+                    }
+                  ]
+                }
+              },
+              "actions": [
+                {
+                  "name": "NotEligibleAction",
+                  "type": "customAction",
+                  "customAction": "instance.root.nextPage(null, 'Page 8');"
+                }
+              ]
+            }
+          ],
+          "type": "panel",
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html49",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h1",
+              "className": "text-center mt-3 mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "start_page_title",
+              "refreshOnChange": false,
+              "key": "html46",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "p",
+              "className": "text-center mx-auto mt-2 mb-4",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span class=\"small text-secondary fw-normal\">\n  start_page_content\n</span>",
+              "refreshOnChange": false,
+              "key": "html47",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Assessment Duration",
+              "className": "d-flex justify-content-center mt-3 mb-4",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center align-items-center gap-2 text-secondary fw-medium\">\n  <i class=\"bi bi-clock\"></i>\n  <span>start_page_estimate_time</span>\n</div>\n",
+              "refreshOnChange": false,
+              "key": "assessmentDuration",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "start_page_continue_button",
+              "action": "custom",
+              "showValidations": false,
+              "size": "lg",
+              "customClass": "text-center",
+              "tableView": false,
+              "key": "letsGetStarted",
+              "type": "button",
+              "custom": "form.nextPage();",
+              "input": true
+            },
+            {
+              "label": "Patient ID",
+              "applyMaskOn": "change",
+              "hidden": true,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "patientId",
+              "type": "textfield",
+              "input": true
+            },
+            {
+              "label": "isEligible",
+              "calculateValue": "const age =data.is18OrOlder;\nconst bmi = Number(data.bmi);\nconst bmiAnswered = Number.isFinite(bmi);\nconst pregnancyStatus = data.pregnancyStatus;\nconst medicalConditions = data.medicalConditions || {};\nconst mentalHealthConditions = data.mentalHealthConditions || {};\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedConditions = data.diagnosedConditions || {};\nconst lifestyle = data.lifestyle || {};\nconst confirmation = data.confirmation;\n\n// Check if the user has answered any relevant fields ---\nconst ageIneligible = age === false;\nconst bmiIneligible = bmiAnswered && bmi <= 24.9;\nconst pregnancyStatusIneligible = [\n  \"pregnant\",\n  \"breastfeeding\",\n  \"possiblyOrTrying\"\n  ].includes(pregnancyStatus);\nconst medicalConditionsIneligible = Object.keys(medicalConditions)\n  .some(key => key !== 'none' && medicalConditions[key] === true);\nconst mentalHealthConditionsIneligible = Object.keys(mentalHealthConditions)\n  .some(key => key !== 'none' && mentalHealthConditions[key] === true);\nconst gastrointestinalIssuesIneligible = [\n  'gallbladderRemoval',\n  'gastroparesis',\n  'bowelObstructionHistory',\n  'inflammatoryBowelDisease'\n  ].some(key => gastrointestinalIssues[key] === true);\nconst diagnosedConditionsIneligible = [\n  'activeCancerTreatment',\n  'uncontrolledHypertension',\n  'recentHeartAttack',\n  'recentStrokeOrTia',\n  'heartFailure',\n  'heartRhythmDisorder',\n  'organTransplant',\n  'onDialysis',\n  'liverCirrhosisOrFailure',\n  'chronicKidneyDiseaseStage4Or5',\n  'seizureOrEpilepsy'\n  ].some(key => diagnosedConditions[key] === true);\nconst lifestyleIneligible =\n  lifestyle.unprescribedDrugUse === true;\nconst confirmationIneligible =\n  confirmation === 'noIDoNotConfirm';\n\n// Flag indicating if the form has enough answers to evaluate eligibility\nconst isIneligible = \n    ageIneligible ||\n    bmiIneligible ||\n    pregnancyStatusIneligible ||\n    medicalConditionsIneligible ||\n    mentalHealthConditionsIneligible ||\n    gastrointestinalIssuesIneligible ||\n    diagnosedConditionsIneligible ||\n    lifestyleIneligible ||\n    confirmationIneligible;\n\nconst groupAnswered = obj =>\n  Object.values(obj).some(v => v === true);\n\nconst hasAnyAnswer =\n  age !== undefined ||\n  bmiAnswered ||\n  pregnancyStatus !== undefined ||\n  groupAnswered(medicalConditions) ||\n  groupAnswered(mentalHealthConditions) ||\n  groupAnswered(gastrointestinalIssues) ||\n  groupAnswered(diagnosedConditions) ||\n  groupAnswered(lifestyle) ||\n  confirmation !== undefined;\n\n  // Set the final value ---\nif(isIneligible){\n    value = false;\n} else if(hasAnyAnswer) {\n    value = true;\n} else {\n    value = null;\n}",
+              "key": "isEligible",
+              "type": "hidden",
+              "input": true,
+              "tableView": false
+            }
+          ],
+          "input": false,
+          "tableView": false
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 1 - Age",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step1",
+          "nextPage": "next = data.isEligible === true ? \"step2\" : \"step1IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html50",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_1_of_10",
+              "refreshOnChange": false,
+              "key": "html53",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_1_question",
+              "optionsLabelPosition": "right",
+              "customClass": "mb-3",
+              "inline": false,
+              "tableView": false,
+              "values": [
+                {
+                  "label": "step_1_answer_option_1",
+                  "value": "true",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_1_answer_option_2",
+                  "value": "false",
+                  "shortcut": ""
+                }
+              ],
+              "dataType": "boolean",
+              "validate": {
+                "required": true
+              },
+              "validateWhenHidden": false,
+              "key": "is18OrOlder",
+              "type": "radio",
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 1 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step1IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody1",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody2",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody3",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton",
+              "type": "button",
+              "input": true,
+              "saveOnEnter": false
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 2 - Height and Weight",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step2",
+          "nextPage": "const weight = Number(data.weight);\nconst height = Number(data.height);\nnext = (height > 0 && weight > 0) ? \"step3\" : \"step2\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html51",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_2_of_10",
+              "refreshOnChange": false,
+              "key": "html52",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_2_question",
+              "widget": "choicesjs",
+              "customClass": "h3",
+              "tableView": true,
+              "defaultValue": "metric",
+              "data": {
+                "values": [
+                  {
+                    "label": "step_2_measuring_unit_imperial",
+                    "value": "imperial"
+                  },
+                  {
+                    "label": "step_2_measuring_unit_metric",
+                    "value": "metric"
+                  }
+                ]
+              },
+              "searchEnabled": false,
+              "validateWhenHidden": false,
+              "key": "measurementUnit",
+              "type": "select",
+              "input": true
+            },
+            {
+              "label": "step_2_height",
+              "applyMaskOn": "change",
+              "customClass": "mt-2",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validateWhenHidden": false,
+              "key": "height",
+              "logic": [
+                {
+                  "name": "Set height suffix (imperial)",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "measurementUnit",
+                          "operator": "isEqual",
+                          "value": "imperial"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "setSuffix",
+                      "type": "property",
+                      "property": {
+                        "label": "Suffix",
+                        "value": "suffix",
+                        "type": "string"
+                      },
+                      "text": "in"
+                    }
+                  ]
+                },
+                {
+                  "name": "Set height suffix (metric)",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "measurementUnit",
+                          "operator": "isEqual",
+                          "value": "metric"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "setSuffix",
+                      "type": "property",
+                      "property": {
+                        "label": "Suffix",
+                        "value": "suffix",
+                        "type": "string"
+                      },
+                      "text": "cm"
+                    }
+                  ]
+                }
+              ],
+              "type": "number",
+              "decimalLimit": 2,
+              "input": true
+            },
+            {
+              "label": "step_2_weight",
+              "applyMaskOn": "change",
+              "customClass": "mb-3",
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "validateWhenHidden": false,
+              "key": "weight",
+              "logic": [
+                {
+                  "name": "Set height suffix (imperial)",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "measurementUnit",
+                          "operator": "isEqual",
+                          "value": "imperial"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "setSuffix",
+                      "type": "property",
+                      "property": {
+                        "label": "Suffix",
+                        "value": "suffix",
+                        "type": "string"
+                      },
+                      "text": "lb"
+                    }
+                  ]
+                },
+                {
+                  "name": "Set height suffix (metric)",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "measurementUnit",
+                          "operator": "isEqual",
+                          "value": "metric"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "setSuffix",
+                      "type": "property",
+                      "property": {
+                        "label": "Suffix",
+                        "value": "suffix",
+                        "type": "string"
+                      },
+                      "text": "kg"
+                    }
+                  ]
+                }
+              ],
+              "type": "number",
+              "decimalLimit": 2,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 3 - BMI Calculation",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step3",
+          "nextPage": "next = data.isEligible === true ? \"step4\" : \"step3IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html76",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_3_of_10",
+              "refreshOnChange": false,
+              "key": "html30",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "BMI",
+              "applyMaskOn": "change",
+              "hidden": true,
+              "mask": false,
+              "tableView": false,
+              "delimiter": false,
+              "requireDecimal": false,
+              "inputFormat": "plain",
+              "truncateMultipleSpaces": false,
+              "clearOnHide": false,
+              "calculateValue": "let bmi = null;\n\n// Read input values\nconst unit = data.measurementUnit; // 'metric' or 'imperial'\nconst height = Number(data.height);\nconst weight = Number(data.weight);\n\n// Ensure valid inputs\nif (height > 0 && weight > 0) {\n\n  // METRIC SYSTEM\n  // height: centimeters (cm)\n  // weight: kilograms (kg)\n  if (unit === 'metric') {\n    const heightInMeters = height / 100; // convert cm to meters\n    bmi = weight / (heightInMeters * heightInMeters);\n  }\n\n  // IMPERIAL SYSTEM\n  // height: inches (in)\n  // weight: pounds (lb)\n  if (unit === 'imperial') {\n    bmi = 703 * (weight / (height * height));\n  }\n}\n\n// Round to 1 decimal\nif (bmi !== null && isFinite(bmi)) {\n  bmi = Math.round(bmi * 10) / 10;\n} else {\n  bmi = null;\n}\n\nvalue = bmi;",
+              "validateWhenHidden": false,
+              "key": "bmi",
+              "type": "number",
+              "decimalLimit": 1,
+              "input": true
+            },
+            {
+              "label": "BMI Value",
+              "className": "w-100 d-flex align-items-center justify-content-between mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span class=\"w-50 fw-normal text-body\">\n  {{ t('step_3_bmi_value') }}:\n</span>\n\n<span class=\"w-50 fw-semibold fs-4 text-body\">\n  {{ data.bmi }}\n</span>\n",
+              "refreshOnChange": false,
+              "key": "bmiValue1",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "html": "<p>step_3_bmi_notice</p>",
+              "label": "BMI Notice 1",
+              "customClass": "small text-body-secondary mb-3",
+              "refreshOnChange": false,
+              "key": "bmiNotice1",
+              "type": "content",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "BMI Eligibility Criteria",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "\n<p class=\"fw-normal text-body mb-2\">\n  step_3_bmi_criteria_notice\n</p>\n<ul class=\"small text-body mb-3 ps-3\">\n  <li>step_3_bmi_criteria_1</li>\n  <li>step_3_bmi_criteria_2</li>\n</ul>",
+              "refreshOnChange": false,
+              "key": "bmiEligibilityCriteria",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "html": "<p>step_3_bmi_disclaimer</p>",
+              "label": "BMI Disclaimer",
+              "customClass": "small text-body-secondary mb-3",
+              "refreshOnChange": false,
+              "key": "content",
+              "type": "content",
+              "input": false,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 3 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step3IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge1",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle1",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody4",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody5",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody6",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton1",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 4 - Pregancy",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step4",
+          "nextPage": "next = data.isEligible === true ? \"step5\" : \"step4IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html79",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_4_of_10",
+              "refreshOnChange": false,
+              "key": "html54",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_4_question",
+              "optionsLabelPosition": "right",
+              "customClass": "mb-3 telus_radio_style_class",
+              "inline": false,
+              "tableView": false,
+              "values": [
+                {
+                  "label": "step_4_answer_option_1",
+                  "value": "pregnant",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_4_answer_option_2",
+                  "value": "breastfeeding",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_4_answer_option_3",
+                  "value": "possiblyOrTrying",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_4_answer_option_4",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "dataType": "string",
+              "validateWhenHidden": false,
+              "key": "pregnancyStatus",
+              "type": "radio",
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 4 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step4IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge2",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle2",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody7",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody8",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody9",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton2",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 5 - Medical Conditions",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step5",
+          "nextPage": "next = data.isEligible === true ? \"step6\" : \"step5IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html80",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_5_of_10",
+              "refreshOnChange": false,
+              "key": "html55",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_5_question",
+              "refreshOnChange": false,
+              "key": "step5Question",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_5_question_notice",
+              "optionsLabelPosition": "right",
+              "customClass": "telus_radio_style_class",
+              "tableView": false,
+              "defaultValue": {
+                "men2History": false,
+                "mtcHistory": false,
+                "diabetesType1": false,
+                "diabetesInsulin": false,
+                "diabeticRetinopathy": false,
+                "pancreatitisOrHighLipase": false,
+                "allergicReactionWeightLossMedication": false,
+                "none": false
+              },
+              "values": [
+                {
+                  "label": "step_5_answer_option_1",
+                  "value": "men2History",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_2",
+                  "value": "mtcHistory",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_3",
+                  "value": "diabetesType1",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_4",
+                  "value": "diabetesInsulin",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_5",
+                  "value": "diabeticRetinopathy",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_6",
+                  "value": "pancreatitisOrHighLipase",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_7",
+                  "value": "allergicReactionWeightLossMedication",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_5_answer_option_8",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validateWhenHidden": false,
+              "key": "medicalConditions",
+              "type": "selectboxes",
+              "input": true,
+              "inputType": "checkbox"
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 5 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step5IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge3",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle3",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody10",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody11",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody12",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton3",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 6 - Mental Health Conditions",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step6",
+          "nextPage": "next = data.isEligible === true ? \"step7\" : \"step6IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html82",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_6_of_10",
+              "refreshOnChange": false,
+              "key": "html56",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_6_question",
+              "refreshOnChange": false,
+              "key": "step6Question",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_6_question_notice",
+              "optionsLabelPosition": "right",
+              "tableView": false,
+              "defaultValue": {
+                "none": false,
+                "anorexiaNervosa": false,
+                "bulimiaNervosa": false,
+                "bingeEatingDisorder": false,
+                "borderLinePersonalityDisorder": false,
+                "maniaOrBipolarDisorder": false,
+                "activeSuicidalThoughts": false,
+                "psychoticDisorders": false,
+                "recentPsychiatricHospitalization": false
+              },
+              "values": [
+                {
+                  "label": "step_6_answer_option_1",
+                  "value": "anorexiaNervosa",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_2",
+                  "value": "bulimiaNervosa",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_3",
+                  "value": "bingeEatingDisorder",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_4",
+                  "value": "borderLinePersonalityDisorder",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_5",
+                  "value": "maniaOrBipolarDisorder",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_6",
+                  "value": "activeSuicidalThoughts",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_7",
+                  "value": "psychoticDisorders",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_8",
+                  "value": "recentPsychiatricHospitalization",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_6_answer_option_9",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validateWhenHidden": false,
+              "key": "mentalHealthConditions",
+              "type": "selectboxes",
+              "input": true,
+              "inputType": "checkbox"
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 6 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step6IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge4",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle4",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody13",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody14",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody15",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Suicidal Thoughts Container",
+              "tableView": false,
+              "validateWhenHidden": false,
+              "key": "suicidalThoughtsContainer",
+              "customConditional": "show = data.mentalHealthConditions.activeSuicidalThoughts === true;",
+              "type": "container",
+              "input": true,
+              "components": [
+                {
+                  "label": "Inligible Body 2",
+                  "className": "mt-3 m-auto",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_support_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_support_description\") }}\n</p>\n",
+                  "refreshOnChange": false,
+                  "key": "ineligibleBody4",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                }
+              ]
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton4",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 7 - Gastrointestinal Issues",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step7",
+          "nextPage": "next = data.isEligible === true ? \"step8\" : \"step7IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html83",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_7_of_10",
+              "refreshOnChange": false,
+              "key": "html57",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_7_question",
+              "optionsLabelPosition": "right",
+              "tableView": false,
+              "defaultValue": {
+                "none": false,
+                "gallbladderRemoval": false,
+                "gallbladderIssues": false,
+                "gastroparesis": false,
+                "bowelObstructionHistory": false,
+                "celiacDisease": false,
+                "glutenOrLactoseIntolerance": false,
+                "irritableBowelSyndrome": false,
+                "inflammatoryBowelDisease": false
+              },
+              "values": [
+                {
+                  "label": "step_7_answer_option_1",
+                  "value": "gallbladderRemoval",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_2",
+                  "value": "gallbladderIssues",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_3",
+                  "value": "gastroparesis",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_4",
+                  "value": "bowelObstructionHistory",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_5",
+                  "value": "celiacDisease",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_6",
+                  "value": "glutenOrLactoseIntolerance",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_7",
+                  "value": "irritableBowelSyndrome",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_8",
+                  "value": "inflammatoryBowelDisease",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_7_answer_option_9",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validateWhenHidden": false,
+              "key": "gastrointestinalIssues",
+              "type": "selectboxes",
+              "input": true,
+              "inputType": "checkbox"
+            },
+            {
+              "label": "isBloodworkRequired",
+              "calculateValue": "const isEligible = data.isEligible;\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedCond = data.diagnosedConditions || {};\n\nconst gastrointestinalConditions =\n  gastrointestinalIssues.gallbladderIssues === true;\n\nconst diagnosedConditions = [\n  'highTriglycerides',\n  'liverIssues',\n  'chronicKidneyDiseaseStage2',\n  'chronicKidneyDiseaseStage3'\n].some(key => diagnosedCond[key] === true);\n  \n\nvalue = isEligible === true && \n(gastrointestinalConditions || diagnosedConditions);",
+              "key": "isBloodworkRequired",
+              "type": "hidden",
+              "input": true,
+              "tableView": false
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 7 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step7IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge5",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle5",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody16",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody17",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody18",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton5",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 8 - Medical Conditions",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step8",
+          "nextPage": "next = data.isEligible === true ? \"step9\" : \"step8IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html84",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_8_of_10",
+              "refreshOnChange": false,
+              "key": "html58",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_8_question",
+              "refreshOnChange": false,
+              "key": "step8Question",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_8_question_notice",
+              "optionsLabelPosition": "right",
+              "tableView": false,
+              "defaultValue": {
+                "activeCancerTreatment": false,
+                "uncontrolledHypertension": false,
+                "recentHeartAttack": false,
+                "recentStrokeOrTia": false,
+                "heartFailure": false,
+                "heartRhythmDisorder": false,
+                "highTriglycerides": false,
+                "organTransplant": false,
+                "onDialysis": false,
+                "liverIssues": false,
+                "liverCirrhosisOrFailure": false,
+                "chronicKidneyDiseaseStage1": false,
+                "chronicKidneyDiseaseStage4Or5": false,
+                "kidneyStones": false,
+                "seizureOrEpilepsy": false,
+                "chronicKidneyDiseaseStage2Or3": false,
+                "none": false
+              },
+              "values": [
+                {
+                  "label": "step_8_answer_option_1",
+                  "value": "activeCancerTreatment",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_2",
+                  "value": "uncontrolledHypertension",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_3",
+                  "value": "recentHeartAttack",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_4",
+                  "value": "recentStrokeOrTia",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_5",
+                  "value": "heartFailure",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_6",
+                  "value": "heartRhythmDisorder",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_7",
+                  "value": "highTriglycerides",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_8",
+                  "value": "organTransplant",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_9",
+                  "value": "onDialysis",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_10",
+                  "value": "liverIssues",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_11",
+                  "value": "liverCirrhosisOrFailure",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_12",
+                  "value": "chronicKidneyDiseaseStage1",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_13",
+                  "value": "chronicKidneyDiseaseStage2Or3",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_14",
+                  "value": "chronicKidneyDiseaseStage4Or5",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_15",
+                  "value": "kidneyStones",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_16",
+                  "value": "seizureOrEpilepsy",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_8_answer_option_17",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validateWhenHidden": false,
+              "key": "diagnosedConditions",
+              "type": "selectboxes",
+              "input": true,
+              "inputType": "checkbox"
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 8 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step8IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge6",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle6",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody19",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody20",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody21",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton6",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 9 - Lifestyle",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step9",
+          "nextPage": "next = data.isEligible === true ? \"step10\" : \"step9IneligibilityResults\";",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html87",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_9_of_10",
+              "refreshOnChange": false,
+              "key": "html59",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_9_question_notice",
+              "refreshOnChange": false,
+              "key": "step5Question1",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_9_question",
+              "optionsLabelPosition": "right",
+              "tableView": false,
+              "defaultValue": {
+                "tobaccoOrNicotineUse": false,
+                "cannabisUse": false,
+                "unprescribedDrugUse": false,
+                "alcohol8PlusPerWeek": false,
+                "alcohol15PlusPerWeek": false,
+                "highCaffeineIntake": false,
+                "highSugarSweetenedBeverageIntake": false,
+                "frequentStress": false,
+                "overwhelmingStress": false,
+                "none": false
+              },
+              "values": [
+                {
+                  "label": "step_9_answer_option_1",
+                  "value": "tobaccoOrNicotineUse",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_2",
+                  "value": "cannabisUse",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_3",
+                  "value": "unprescribedDrugUse",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_4",
+                  "value": "alcohol8PlusPerWeek",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_5",
+                  "value": "alcohol15PlusPerWeek",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_6",
+                  "value": "highCaffeineIntake",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_7",
+                  "value": "highSugarSweetenedBeverageIntake",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_8",
+                  "value": "frequentStress",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_9",
+                  "value": "overwhelmingStress",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_9_answer_option_10",
+                  "value": "none",
+                  "shortcut": ""
+                }
+              ],
+              "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validateWhenHidden": false,
+              "key": "lifestyle",
+              "type": "selectboxes",
+              "input": true,
+              "inputType": "checkbox"
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 9 Results",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "step9IneligibilityResults",
+          "customConditional": "show = data.isEligible === false;",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Inligible Badge",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+              "refreshOnChange": false,
+              "key": "ineligibleBadge7",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Ineligible Title",
+              "tag": "h1",
+              "className": "text-center fs-1 fw-bold mt-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleTitle7",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 1",
+              "tag": "p",
+              "className": "text-center fs-6 mt-3 m-auto mb-3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+              "refreshOnChange": false,
+              "key": "ineligibleBody22",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 2",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody23",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "Inligible Body 3",
+              "className": "mt-3 m-auto",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+              "refreshOnChange": false,
+              "key": "ineligibleBody24",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "ineligible_message_home_button",
+              "size": "lg",
+              "customClass": "text-center mt-3",
+              "tableView": false,
+              "key": "ineligibleHomeButton7",
+              "type": "button",
+              "saveOnEnter": false,
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Step 10 - Confirmation",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": true
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": true,
+          "collapsible": false,
+          "key": "step10",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "HTML",
+              "className": "text-center mt-3 mb-2",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "<div style=\"\n  width:4rem;\n  height:4rem;\n  border-radius:50%;\n  background:#4B2E83;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  margin:1rem auto;\n\">\n  <img\n    src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgiIGhlaWdodD0iMjgiIHZpZXdCb3g9IjAgMCAyOCAyOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4wMDAyIDIuMzMzMDFDMTQuNjQ0NCAyLjMzMzA2IDE1LjE2NzEgMi44NTU3IDE1LjE2NzEgMy41VjUuMDk1N0MxNy4zODMxIDYuMTA4ODYgMjAuMjg2OSA3IDIyLjE2NzEgN0gyNC41MDAyQzI1LjE0NDIgNy4wMDAwNiAyNS42NjY4IDcuNTIxOTggMjUuNjY3MSA4LjE2NjAyQzI1LjY2NzEgOC44MTAzMSAyNS4xNDQ0IDkuMzMyOTUgMjQuNTAwMiA5LjMzMzAxSDIzLjQxMzJMMjYuNzU5OSAxOC4yNTY4QzI2Ljk0MTkgMTguNzQyNCAyNi43ODA2IDE5LjI5IDI2LjM2NTQgMTkuNjAwNkMyNS4xNTAxIDIwLjUwODYgMjMuNjgwMiAyMC45OTk5IDIyLjE2NzEgMjFDMjAuNjU0IDIxIDE5LjE4NDMgMjAuNTA4NiAxNy45Njg5IDE5LjYwMDZDMTcuNTUzNCAxOS4yOSAxNy4zOTIzIDE4Ljc0MjYgMTcuNTc0NCAxOC4yNTY4TDIwLjk1MDMgOS4yNTE5NUMxOS4xMTc1IDkuMDMyNDggMTYuOTgyNiA4LjM4MDc5IDE1LjE2NzEgNy42MzY3MlYyMy4zMzNIMTkuODM0MUMyMC40NzgxIDIzLjMzMzQgMjEuMDAwMiAyMy44NTU5IDIxLjAwMDIgMjQuNUMyMS4wMDAyIDI1LjE0NDEgMjAuNDc4MSAyNS42NjY2IDE5LjgzNDEgMjUuNjY3SDguMTY3MTVDNy41MjI4MSAyNS42NjcgNy4wMDAxNSAyNS4xNDQzIDcuMDAwMTUgMjQuNUM3LjAwMDE1IDIzLjg1NTcgNy41MjI4MSAyMy4zMzMgOC4xNjcxNSAyMy4zMzNIMTIuODMzMlY3LjYzNjcyQzExLjAxNzQgOC4zODA5MyA4Ljg4MjA0IDkuMDMyNTcgNy4wNDg5OCA5LjI1MTk1TDEwLjQyNTkgMTguMjU2OEMxMC42MDggMTguNzQyNiAxMC40NDY5IDE5LjI5IDEwLjAzMTQgMTkuNjAwNkM4LjgxNTk5IDIwLjUwODYgNy4zNDYzNCAyMSA1LjgzMzE2IDIxQzQuMzIwMDUgMjAuOTk5OSAyLjg1MDI3IDIwLjUwODYgMS42MzQ5MiAxOS42MDA2QzEuMjE5NjIgMTkuMjkgMS4wNTg0IDE4Ljc0MjUgMS4yNDAzOSAxOC4yNTY4TDQuNTg3MDcgOS4zMzMwMUgzLjUwMDE1QzIuODU1ODIgOS4zMzMwMSAyLjMzMzE2IDguODEwMzUgMi4zMzMxNiA4LjE2NjAyQzIuMzMzNDcgNy41MjE5NSAyLjg1NjAxIDcgMy41MDAxNSA3SDUuODMzMTZDNy43MTM0NSA2Ljk5OTk3IDEwLjYxNzIgNi4xMDg4NyAxMi44MzMyIDUuMDk1N1YzLjVDMTIuODMzMiAyLjg1NTY3IDEzLjM1NTggMi4zMzMwMSAxNC4wMDAyIDIuMzMzMDFaTTMuNzYxODcgMTguMTc3N0M0LjQwNDg0IDE4LjQ5NjYgNS4xMTE3NyAxOC42NjYgNS44MzMxNiAxOC42NjZDNi41NTQzMSAxOC42NjYgNy4yNjA2NiAxOC40OTYzIDcuOTAzNDcgMTguMTc3N0w1LjgzMzE2IDEyLjY1NjJMMy43NjE4NyAxOC4xNzc3Wk0yMC4wOTU5IDE4LjE3NzdDMjAuNzM4OCAxOC40OTY1IDIxLjQ0NTggMTguNjY2IDIyLjE2NzEgMTguNjY2QzIyLjg4ODIgMTguNjY1OSAyMy41OTQ4IDE4LjQ5NjMgMjQuMjM3NSAxOC4xNzc3TDIyLjE2NzEgMTIuNjU2MkwyMC4wOTU5IDE4LjE3NzdaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\"\n    style=\"width:1.75rem; height:auto;\"\n    alt=\"Balance icon\"\n  />\n</div>\n",
+              "refreshOnChange": false,
+              "key": "html86",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h5",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_10_of_10",
+              "refreshOnChange": false,
+              "key": "html60",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "HTML",
+              "tag": "h3",
+              "attrs": [
+                {
+                  "attr": "",
+                  "value": ""
+                }
+              ],
+              "content": "step_10_question_notice",
+              "refreshOnChange": false,
+              "key": "html67",
+              "type": "htmlelement",
+              "input": false,
+              "tableView": false
+            },
+            {
+              "label": "step_10_question",
+              "optionsLabelPosition": "right",
+              "inline": false,
+              "tableView": false,
+              "values": [
+                {
+                  "label": "step_10_answer_option_1",
+                  "value": "yesIConfirm",
+                  "shortcut": ""
+                },
+                {
+                  "label": "step_10_answer_option_2",
+                  "value": "noIDoNotConfirm",
+                  "shortcut": ""
+                }
+              ],
+              "validateWhenHidden": false,
+              "key": "confirmation",
+              "type": "radio",
+              "input": true
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "Results",
+          "breadcrumbClickable": true,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "key": "eligibilityResults",
+          "type": "panel",
+          "input": false,
+          "tableView": false,
+          "components": [
+            {
+              "label": "Eligible Container",
+              "tableView": false,
+              "validateWhenHidden": false,
+              "key": "eligibleContainer1",
+              "conditional": {
+                "show": true,
+                "conjunction": "all",
+                "conditions": [
+                  {
+                    "component": "isEligible",
+                    "operator": "isEqual",
+                    "value": "true"
+                  }
+                ]
+              },
+              "type": "container",
+              "input": true,
+              "components": [
+                {
+                  "label": "Eligible Badge",
+                  "className": "text-center mt-3 mb-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n       style=\"\r\n         width:4rem;\r\n         height:4rem;\r\n         background: radial-gradient(\r\n           circle at 35% 30%,\r\n           #d7f4be 0%,\r\n           #b6e58f 40%,\r\n           #8fd36a 100%\r\n         );\r\n         box-shadow:\r\n           0 0 1.4rem rgba(143, 211, 106, 0.45),\r\n           0 0 0.4rem rgba(143, 211, 106, 0.25),\r\n           inset 0 0 0.3rem rgba(255, 255, 255, 0.25);\r\n       \">\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMC4xODExIDQuMDQzOUMyMC42Nzk2IDMuNjIyNTMgMjEuNDIwNSAzLjY1NDY2IDIxLjg4NTIgNC4xMzc2NUwyMS45NjkyIDQuMjM0MzNDMjIuMzM3NCA0LjcwMTc0IDIyLjM0NDkgNS4zNzI5MyAyMS45ODQ4IDUuODQ2NjRMMjEuOTAxOCA1Ljk0NTI3TDkuMjgwNyAxOS41MDY4QzkuMjU1MjUgMTkuNTQxIDkuMjI4MTkgMTkuNTc0NSA5LjE5OTY0IDE5LjYwNjRMOS4xMDI5NiAxOS43MDMxTDkuMTAxOTkgMTkuNzAyMUw5LjA5MzIgMTkuNzA5OUw4Ljk2MTM2IDE5Ljg1MjVDOC43MTU2MSAyMC4xMTY1IDguMzczNjIgMjAuMjU5NiA4LjAzMDcgMjAuMjQ4TDguMDMxNjcgMjAuMjQ5QzguMDI5ODcgMjAuMjQ5IDguMDI3NjIgMjAuMjQ4MSA4LjAyNTgxIDIwLjI0OEM4LjAyMjE2IDIwLjI0NzkgOC4wMTc3NyAyMC4yNDkxIDguMDE0MSAyMC4yNDlDNy42OTQ3MyAyMC4yNTEzIDcuMzg1NjUgMjAuMTM0NiA3LjE0NjkxIDE5LjkxOTlMNy4wNDczIDE5LjgyMDNMMi4wODYzNiAxNC4yNjI3QzEuNjI4NCAxMy43NDk2IDEuNjM5NyAxMi45NDk5IDIuMTE3NjEgMTIuNDUzMUwyLjIxMzMxIDEyLjM2MzJDMi43MDk2NSAxMS45NDQ3IDMuNDUzOTUgMTEuOTc2NCAzLjkxMjUzIDEyLjQ1MzFMNy45OTY1MiAxNi42OTkyTDIwLjA4NTQgNC4xMzQ3MkwyMC4xODExIDQuMDQzOVpNMi4xNDk4NCAxMy45Mjk2QzIuMTUzNjQgMTMuOTM2MSAyLjE1ODU5IDEzLjk0MTggMi4xNjI1MyAxMy45NDgyQzIuMTQwNjggMTMuOTEyOSAyLjEyMDM5IDEzLjg3NyAyLjEwMjk2IDEzLjgzOThMMi4xNDk4NCAxMy45Mjk2WiIgZmlsbD0iI0Y0RjlGMiIvPgo8L3N2Zz4K\" \r\n    />\r\n  </div>\r\n</div>",
+                  "refreshOnChange": false,
+                  "key": "eligibleBadge",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Eligible Title",
+                  "tag": "h1",
+                  "className": "text-center fs-1 fw-bold mt-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<span>{{ t(\"eligible_notice_1\") }}</span>\n<br />\n<span>{{ t(\"eligible_notice_2\") }}</span>",
+                  "refreshOnChange": false,
+                  "key": "eligibleTitle",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Eligible Body 1",
+                  "tag": "p",
+                  "className": "text-center fs-6 mt-3 m-auto mb-3",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"eligible_message_description\") }}\n</span>",
+                  "refreshOnChange": false,
+                  "key": "eligibleBody1",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Eligible Body 2",
+                  "tag": "p",
+                  "className": "text-center fs-6 m-auto mt-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<span class=\"fw-bold\">\n  {{ t(\"eligible_message_bloodwork_1\") }}\n</span>\n<br />\n<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"eligible_message_bloodwork_2\") }}\n</span>",
+                  "refreshOnChange": false,
+                  "key": "eligibleBody2",
+                  "conditional": {
+                    "show": true,
+                    "conjunction": "all",
+                    "conditions": [
+                      {
+                        "component": "isBloodworkRequired",
+                        "operator": "isEqual",
+                        "value": "true"
+                      }
+                    ]
+                  },
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Eligible Next Steps",
+                  "className": "mt-3 mb-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<h3 class=\"fs-5 fw-semibold mt-4 mb-3\">\n  {{ t(\"eligible_next_title\") }}\n  </h3>\n<div class=\"mt-3\">\n  <div class=\"d-flex mb-3 align-items-center\">\n    <div class=\"rounded-circle d-flex justify-content-center align-items-center fs-6\"\n     style=\"width:2.25rem; height:2.25rem; background:#6B3EC9; color:#fff; font-weight:bold;\">\n      1\n    </div>\n    <div class=\"mx-2 fs-6\">{{ t(\"eligible_next_1\") }}</div>\n  </div>\n\n</div>",
+                  "refreshOnChange": false,
+                  "key": "eligibleNextSteps",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "eligible_message_continue_button",
+                  "size": "lg",
+                  "customClass": "text-center mt-3",
+                  "tableView": false,
+                  "key": "eligibleContinueButton",
+                  "type": "button",
+                  "saveOnEnter": false,
+                  "input": true
+                }
+              ]
+            },
+            {
+              "label": "Inligible Container",
+              "tableView": false,
+              "validateWhenHidden": false,
+              "key": "ineligibleContainer1",
+              "conditional": {
+                "show": true,
+                "conjunction": "all",
+                "conditions": [
+                  {
+                    "component": "isEligible",
+                    "operator": "isEqual",
+                    "value": "false"
+                  }
+                ]
+              },
+              "type": "container",
+              "input": true,
+              "components": [
+                {
+                  "label": "Inligible Badge",
+                  "className": "text-center mt-3 mb-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<div class=\"d-flex justify-content-center mt-3 mb-2\">\r\n  <div\r\n    class=\"rounded-circle d-flex justify-content-center align-items-center\"\r\n    style=\"\r\n      width:4rem;\r\n      height:4rem;\r\n      background: radial-gradient(\r\n        circle at 35% 30%,\r\n        #ffe3b3 0%,\r\n        #ffb74d 45%,\r\n        #ff9800 100%\r\n      );\r\n      box-shadow:\r\n        0 0 1.4rem rgba(255, 152, 0, 0.45),\r\n        0 0 0.4rem rgba(255, 152, 0, 0.25),\r\n        inset 0 0 0.3rem rgba(255, 255, 255, 0.35);\r\n    \"\r\n  >\r\n    <img\r\n      style=\"width:1.6rem; height:1.6rem; opacity:0.9;\"\r\n      src=\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDBDMTguNjI3NCAwIDI0IDUuMzcyNTggMjQgMTJDMjQgMTguNjI3NCAxOC42Mjc0IDI0IDEyIDI0QzUuMzcyNTggMjQgMCAxOC42Mjc0IDAgMTJDMCA1LjM3MjU4IDUuMzcyNTggMCAxMiAwWk0xMiAyQzYuNDc3MTUgMiAyIDYuNDc3MTUgMiAxMkMyIDE3LjUyMjggNi40NzcxNSAyMiAxMiAyMkMxNy41MjI4IDIyIDIyIDE3LjUyMjggMjIgMTJDMjIgNi40NzcxNSAxNy41MjI4IDIgMTIgMlpNMTIgMTdDMTIuNTUyMyAxNyAxMyAxNy40NDc3IDEzIDE4QzEzIDE4LjU1MjMgMTIuNTUyMyAxOSAxMiAxOUMxMS40NDc3IDE5IDExIDE4LjU1MjMgMTEgMThDMTEgMTcuNDQ3NyAxMS40NDc3IDE3IDEyIDE3Wk0xMiA2QzEyLjU1MjMgNiAxMyA2LjQ0NzcxIDEzIDdWMTVDMTMgMTUuNTUyMyAxMi41NTIzIDE2IDEyIDE2QzExLjQ0NzcgMTYgMTEgMTUuNTUyMyAxMSAxNVY3QzExIDYuNDQ3NzEgMTEuNDQ3NyA2IDEyIDZaIiBmaWxsPSIjRjRGOUYyIi8+Cjwvc3ZnPgo=\" \r\n    />\r\n  </div>\r\n</div>",
+                  "refreshOnChange": false,
+                  "key": "ineligibleBadge",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Ineligible Title",
+                  "tag": "h1",
+                  "className": "text-center fs-1 fw-bold mt-2",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<span>\n  {{ t(\"ineligible_notice\") }}\n</span>",
+                  "refreshOnChange": false,
+                  "key": "ineligibleTitle",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Inligible Body 1",
+                  "tag": "p",
+                  "className": "text-center fs-6 mt-3 m-auto mb-3",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<span style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n   \">\n  {{ t(\"ineligible_message_description\") }}\n</span>",
+                  "refreshOnChange": false,
+                  "key": "ineligibleBody1",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Inligible Body 2",
+                  "className": "mt-3 m-auto",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_reason_title\") }}\n</h5>\n<p style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n  {{ t(\"ineligible_reason_description\") }}\n</p>\n",
+                  "refreshOnChange": false,
+                  "key": "ineligibleBody2",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "Inligible Body 3",
+                  "className": "mt-3 m-auto",
+                  "attrs": [
+                    {
+                      "attr": "",
+                      "value": ""
+                    }
+                  ],
+                  "content": "<h5 class=\"fw-semibold\">\n  {{ t(\"ineligible_options_title\") }}\n</h5>\n<ul>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_1\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_2\") }}\n  </li>\n  <li style=\"\n     color:#6e6e6e;\n     max-width:20rem;\n     line-height:1.45;\n     font-size:0.95rem;\n   \">\n    {{ t(\"ineligible_option_3\") }}\n  </li>\n</ul>\n",
+                  "refreshOnChange": false,
+                  "key": "ineligibleBody3",
+                  "type": "htmlelement",
+                  "input": false,
+                  "tableView": false
+                },
+                {
+                  "label": "ineligible_message_home_button",
+                  "size": "lg",
+                  "customClass": "text-center mt-3",
+                  "tableView": false,
+                  "key": "ineligibleHomeButton",
+                  "type": "button",
+                  "saveOnEnter": false,
+                  "input": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "*** TEST LABEL ***",
+          "title": "DO NOT DELETE",
+          "breadcrumbClickable": false,
+          "buttonSettings": {
+            "previous": false,
+            "cancel": false,
+            "next": false
+          },
+          "navigateOnEnter": false,
+          "saveOnEnter": false,
+          "scrollToTop": false,
+          "collapsible": false,
+          "hidden": true,
+          "hideLabel": true,
+          "disabled": true,
+          "key": "page21",
+          "type": "panel",
+          "allowPrevious": false,
+          "input": false,
+          "tableView": false,
+          "components": []
+        }
+      ],
+      "access": [
+        {
+          "type": "create_own",
+          "roles": []
+        },
+        {
+          "type": "create_all",
+          "roles": []
+        },
+        {
+          "type": "read_own",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "read_all",
+          "roles": [
+            "administrator",
+            "anonymous"
+          ]
+        },
+        {
+          "type": "update_own",
+          "roles": []
+        },
+        {
+          "type": "update_all",
+          "roles": []
+        },
+        {
+          "type": "delete_own",
+          "roles": []
+        },
+        {
+          "type": "delete_all",
+          "roles": []
+        },
+        {
+          "type": "team_read",
+          "roles": []
+        },
+        {
+          "type": "team_write",
+          "roles": []
+        },
+        {
+          "type": "team_admin",
+          "roles": []
+        }
+      ],
+      "submissionAccess": [
+        {
+          "type": "create_own",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "create_all",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "read_own",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "read_all",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "update_own",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "update_all",
+          "roles": [
+            "anonymous"
+          ]
+        },
+        {
+          "type": "delete_own",
+          "roles": []
+        },
+        {
+          "type": "delete_all",
+          "roles": []
+        },
+        {
+          "type": "team_read",
+          "roles": []
+        },
+        {
+          "type": "team_write",
+          "roles": []
+        },
+        {
+          "type": "team_admin",
+          "roles": []
+        }
+      ],
+      "properties": {
+        "programName": "Weight Management"
+      },
+      "controller": "if (Array.isArray(components) && components.length > 0) {\n  components[0].label = '*** TEST LABEL ***';\n}",
+      "submissionRevisions": "",
+      "revisions": "",
+      "esign": {}
+    }
+  },
+  "actions": {
+    "hznweightmanagmentsprint42JayVersion:save": {
+      "title": "Save Submission",
+      "name": "save",
+      "form": "hznweightmanagmentsprint42JayVersion",
+      "priority": 10,
+      "method": [
+        "create",
+        "update"
+      ],
+      "handler": [
+        "before"
+      ]
+    }
+  },
+  "resources": {},
+  "revisions": {},
+  "excludeAccess": true
+}
