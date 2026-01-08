@@ -99,7 +99,8 @@
       "display": "wizard",
       "action": "",
       "tags": [
-        "languageformweightmanagement"
+        "languageformweightmanagement",
+        "languageformweightmanagementresourcesecondary"
       ],
       "settings": {
         "share": {
