@@ -4,7 +4,7 @@ services:
     image: mongo
     restart: always
     volumes:
-      - "./data/db:/data/db"
+      - mongo-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME:
       MONGO_INITDB_ROOT_PASSWORD:
@@ -17,56 +17,44 @@ services:
     volumes:
       - "./data/seaweedfs/data:/data"
     environment:
-      AWS_ACCESS_KEY_ID: CHANGEME
-      AWS_SECRET_ACCESS_KEY: CHANGEME
+      AWS_ACCESS_KEY_ID: formio-local
+      AWS_SECRET_ACCESS_KEY: formio-local-secret
     command: server -s3
   api-server:
     image: formio/formio-enterprise:latest
-    mem_limit: 2048m
     restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 2048m
     links:
       - mongo
-      - pdf-server
     ports:
       - "3000:3000"
     environment:
-      DB_SECRET: CHANGEME
-      JWT_SECRET: CHANGEME
+      DB_SECRET: formio-local-db-secret
+      JWT_SECRET: formio-local-jwt-secret
       ADMIN_EMAIL: admin@example.com
-      ADMIN_PASS: CHANGEME
+      ADMIN_PASS: admin
       MONGO: mongodb://mongo:27017/formio
-      PDF_SERVER: http://pdf-server:4005
+      PDF_SERVER: ""
       PORTAL_ENABLED: 1
       PORT: 3000
-    env_file:
-      - data/.env
-  pdf-server:
-    image: formio/pdf-server:latest
-    restart: always
-    mem_limit: 2048m
-    links:
-      - mongo
-      - seaweedfs
-    ports:
-      - "4005:4005"
-    environment:
-      MONGO: mongodb://mongo:27017/formio
-      FORMIO_S3_SERVER: seaweedfs
-      FORMIO_S3_PORT: 8333
-      FORMIO_S3_BUCKET: formio
-      FORMIO_S3_KEY: CHANGEME
-      FORMIO_S3_SECRET: CHANGEME
-      FORMIO_PDF_PORT: 4005
     env_file:
       - data/.env
   nginx-proxy:
     image: nginx
     restart: always
-    mem_limit: 128m
+    deploy:
+      resources:
+        limits:
+          memory: 128m
     ports:
       - "80:80"
     volumes:
       - "./conf.d:/etc/nginx/conf.d:ro"
     links:
       - api-server
-      - pdf-server
+
+volumes:
+  mongo-data:
