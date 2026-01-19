@@ -25,7 +25,7 @@
   },
   "forms": {
     "hznweightmanagmentsprint42JayVersion": {
-      "title": "HZN - Weight managment - Sprint 42 - Jay Version",
+      "title": "MyCare - Weight managment",
       "type": "form",
       "name": "hznweightmanagmentsprint42JayVersion",
       "path": "hznweightmanagmentsprint42jayversion",
@@ -99,8 +99,7 @@
       "display": "wizard",
       "action": "",
       "tags": [
-        "languageformweightmanagement",
-        "languageformweightmanagementresourcesecondary"
+        "languageformweightmanagement"
       ],
       "settings": {
         "share": {
@@ -115,7 +114,8 @@
         "margins": "",
         "hideTitle": true,
         "theme": null,
-        "viewAsHtml": false
+        "viewAsHtml": false,
+        "viewer": "https://herzon-telus.github.io/formio-viewer/"
       },
       "components": [
         {
@@ -249,9 +249,33 @@
               "input": true
             },
             {
+              "label": "Patient UUID",
+              "applyMaskOn": "change",
+              "hidden": true,
+              "tableView": true,
+              "validateWhenHidden": false,
+              "key": "patientUuid",
+              "type": "textfield",
+              "input": true
+            },
+            {
               "label": "isEligible",
-              "calculateValue": "const age =data.is18OrOlder;\nconst bmi = Number(data.bmi);\nconst bmiAnswered = Number.isFinite(bmi);\nconst pregnancyStatus = data.pregnancyStatus;\nconst medicalConditions = data.medicalConditions || {};\nconst mentalHealthConditions = data.mentalHealthConditions || {};\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedConditions = data.diagnosedConditions || {};\nconst lifestyle = data.lifestyle || {};\nconst confirmation = data.confirmation;\n\n// Check if the user has answered any relevant fields ---\nconst ageIneligible = age === false;\nconst bmiIneligible = bmiAnswered && bmi <= 24.9;\nconst pregnancyStatusIneligible = [\n  \"pregnant\",\n  \"breastfeeding\",\n  \"possiblyOrTrying\"\n  ].includes(pregnancyStatus);\nconst medicalConditionsIneligible = Object.keys(medicalConditions)\n  .some(key => key !== 'none' && medicalConditions[key] === true);\nconst mentalHealthConditionsIneligible = Object.keys(mentalHealthConditions)\n  .some(key => key !== 'none' && mentalHealthConditions[key] === true);\nconst gastrointestinalIssuesIneligible = [\n  'gallbladderRemoval',\n  'gastroparesis',\n  'bowelObstructionHistory',\n  'inflammatoryBowelDisease'\n  ].some(key => gastrointestinalIssues[key] === true);\nconst diagnosedConditionsIneligible = [\n  'activeCancerTreatment',\n  'uncontrolledHypertension',\n  'recentHeartAttack',\n  'recentStrokeOrTia',\n  'heartFailure',\n  'heartRhythmDisorder',\n  'organTransplant',\n  'onDialysis',\n  'liverCirrhosisOrFailure',\n  'chronicKidneyDiseaseStage4Or5',\n  'seizureOrEpilepsy'\n  ].some(key => diagnosedConditions[key] === true);\nconst lifestyleIneligible =\n  lifestyle.unprescribedDrugUse === true;\nconst confirmationIneligible =\n  confirmation === 'noIDoNotConfirm';\n\n// Flag indicating if the form has enough answers to evaluate eligibility\nconst isIneligible = \n    ageIneligible ||\n    bmiIneligible ||\n    pregnancyStatusIneligible ||\n    medicalConditionsIneligible ||\n    mentalHealthConditionsIneligible ||\n    gastrointestinalIssuesIneligible ||\n    diagnosedConditionsIneligible ||\n    lifestyleIneligible ||\n    confirmationIneligible;\n\nconst groupAnswered = obj =>\n  Object.values(obj).some(v => v === true);\n\nconst hasAnyAnswer =\n  age !== undefined ||\n  bmiAnswered ||\n  pregnancyStatus !== undefined ||\n  groupAnswered(medicalConditions) ||\n  groupAnswered(mentalHealthConditions) ||\n  groupAnswered(gastrointestinalIssues) ||\n  groupAnswered(diagnosedConditions) ||\n  groupAnswered(lifestyle) ||\n  confirmation !== undefined;\n\n  // Set the final value ---\nif(isIneligible){\n    value = false;\n} else if(hasAnyAnswer) {\n    value = true;\n} else {\n    value = null;\n}",
+              "calculateValue": "const age =data.is18OrOlder;\nconst bmi = Number(data.bmi);\nconst bmiAnswered = Number.isFinite(bmi);\nconst pregnancyStatus = data.pregnancyStatus;\nconst medicalConditions = data.medicalConditions || {};\nconst mentalHealthConditions = data.mentalHealthConditions || {};\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedConditions = data.diagnosedConditions || {};\nconst lifestyle = data.lifestyle || {};\nconst confirmation = data.confirmation;\n\n// Check if the user has answered any relevant fields ---\nconst ageIneligible = age === false;\nconst bmiIneligible = bmiAnswered && bmi <= 24.9;\nconst pregnancyStatusIneligible = [\n  \"pregnant\",\n  \"breastfeeding\",\n  \"possiblyOrTrying\"\n  ].includes(pregnancyStatus);\nconst medicalConditionsIneligible = Object.keys(medicalConditions)\n  .some(key => key !== 'none' && medicalConditions[key] === true);\nconst mentalHealthConditionsIneligible = Object.keys(mentalHealthConditions)\n  .some(key => key !== 'none' && mentalHealthConditions[key] === true);\nconst gastrointestinalIssuesIneligible = [\n  'gallbladderRemoval',\n  'gastroparesis',\n  'bowelObstructionHistory',\n  'inflammatoryBowelDisease'\n  ].some(key => gastrointestinalIssues[key] === true);\nconst diagnosedConditionsIneligible = [\n  'activeCancerTreatment',\n  'uncontrolledHypertension',\n  'recentHeartAttack',\n  'recentStrokeOrTia',\n  'heartFailure',\n  'heartRhythmDisorder',\n  'organTransplant',\n  'onDialysis',\n  'liverCirrhosisOrFailure',\n  'chronicKidneyDiseaseStage4Or5',\n  'seizureOrEpilepsy'\n  ].some(key => diagnosedConditions[key] === true);\nconst lifestyleIneligible =\n  lifestyle.unprescribedDrugUse === true;\nconst confirmationIneligible =\n  confirmation === 'noIDoNotConfirm';\n\n// Flag indicating if the form has enough answers to evaluate eligibility\nconst isIneligible = \n    ageIneligible ||\n    bmiIneligible ||\n    pregnancyStatusIneligible ||\n    medicalConditionsIneligible ||\n    mentalHealthConditionsIneligible ||\n    gastrointestinalIssuesIneligible ||\n    diagnosedConditionsIneligible ||\n    lifestyleIneligible ||\n    confirmationIneligible;\n\nconst groupAnswered = obj =>\n  Object.values(obj).some(v => v === true);\n\nconst hasAnyAnswer =\n  age !== undefined ||\n  bmiAnswered ||\n  pregnancyStatus !== undefined ||\n  groupAnswered(medicalConditions) ||\n  groupAnswered(mentalHealthConditions) ||\n  groupAnswered(gastrointestinalIssues) ||\n  groupAnswered(diagnosedConditions) ||\n  groupAnswered(lifestyle) ||\n  confirmation !== undefined;\n\n  // Set the final value ---\nif(isIneligible){\n    value = false;\n} else if(hasAnyAnswer) {\n    value = true;\n} else {\n    value = null;\n}\n\n// Determine the ineligibility source question\nlet ineligibilitySource = \"\";\n\nif(ageIneligible){\n  ineligibilitySource = \"step1\";\n} else if(bmiIneligible){\n  ineligibilitySource = \"step3\";\n} else if(pregnancyStatusIneligible) {\n  ineligibilitySource = \"step4\";\n}else if(medicalConditionsIneligible){\n  ineligibilitySource = \"step5\";\n} else if(mentalHealthConditionsIneligible){\n  ineligibilitySource = \"step6\";\n} else if(gastrointestinalIssuesIneligible){\n  ineligibilitySource = \"step7\";\n} else if(diagnosedConditionsIneligible){\n  ineligibilitySource = \"step8\";\n} else if(lifestyleIneligible){\n  ineligibilitySource = \"step9\";\n} else if(confirmationIneligible){\n  ineligibilitySource = \"step10\";\n}\ndata.ineligibilitySource = ineligibilitySource;",
               "key": "isEligible",
+              "type": "hidden",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "ineligibilitySource",
+              "key": "ineligibilitySource",
+              "type": "hidden",
+              "input": true,
+              "tableView": false
+            },
+            {
+              "label": "language",
+              "key": "language",
               "type": "hidden",
               "input": true,
               "tableView": false
@@ -261,7 +285,7 @@
           "tableView": false
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 1 - Age",
           "title": "Step 1 - Age",
           "breadcrumbClickable": true,
           "buttonSettings": {
@@ -274,7 +298,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step1",
-          "nextPage": "next = data.isEligible === true ? \"step2\" : \"step1IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step1\") ? \"step2\" : \"step1IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -335,13 +359,44 @@
               },
               "validateWhenHidden": false,
               "key": "is18OrOlder",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is false",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "radio",
               "input": true
             }
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 1 Results",
           "title": "Step 1 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -354,7 +409,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step1IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step1\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -567,7 +622,7 @@
                         "value": "suffix",
                         "type": "string"
                       },
-                      "text": "in"
+                      "text": "step_2_height_measuring_unit_imperial_suffix"
                     }
                   ]
                 },
@@ -697,7 +752,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step3",
-          "nextPage": "next = data.isEligible === true ? \"step4\" : \"step3IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step3\") ? \"step4\" : \"step3IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -748,6 +803,7 @@
               "calculateValue": "let bmi = null;\n\n// Read input values\nconst unit = data.measurementUnit; // 'metric' or 'imperial'\nconst height = Number(data.height);\nconst weight = Number(data.weight);\n\n// Ensure valid inputs\nif (height > 0 && weight > 0) {\n\n  // METRIC SYSTEM\n  // height: centimeters (cm)\n  // weight: kilograms (kg)\n  if (unit === 'metric') {\n    const heightInMeters = height / 100; // convert cm to meters\n    bmi = weight / (heightInMeters * heightInMeters);\n  }\n\n  // IMPERIAL SYSTEM\n  // height: inches (in)\n  // weight: pounds (lb)\n  if (unit === 'imperial') {\n    bmi = 703 * (weight / (height * height));\n  }\n}\n\n// Round to 1 decimal\nif (bmi !== null && isFinite(bmi)) {\n  bmi = Math.round(bmi * 10) / 10;\n} else {\n  bmi = null;\n}\n\nvalue = bmi;",
               "validateWhenHidden": false,
               "key": "bmi",
+              "customConditional": "show =options.pdf;",
               "type": "number",
               "decimalLimit": 1,
               "input": true
@@ -806,7 +862,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 3 Results",
           "title": "Step 3 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -819,7 +875,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step3IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step3\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -933,7 +989,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step4",
-          "nextPage": "next = data.isEligible === true ? \"step5\" : \"step4IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step4\") ? \"step5\" : \"step4IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -999,15 +1055,49 @@
                 }
               ],
               "dataType": "string",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "pregnancyStatus",
+              "logic": [
+                {
+                  "name": "Set required property when isEligible is false",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "radio",
               "input": true
             }
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 4 Results",
           "title": "Step 4 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -1020,7 +1110,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step4IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step4\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -1134,7 +1224,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step5",
-          "nextPage": "next = data.isEligible === true ? \"step6\" : \"step5IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step5\") ? \"step6\" : \"step5IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -1245,8 +1335,42 @@
                 }
               ],
               "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "medicalConditions",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is fals",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "selectboxes",
               "input": true,
               "inputType": "checkbox"
@@ -1254,7 +1378,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 5 Results",
           "title": "Step 5 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -1267,7 +1391,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step5IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step5\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -1381,7 +1505,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step6",
-          "nextPage": "next = data.isEligible === true ? \"step7\" : \"step6IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step6\") ? \"step7\" : \"step6IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -1497,8 +1621,42 @@
                 }
               ],
               "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "mentalHealthConditions",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is fals",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "selectboxes",
               "input": true,
               "inputType": "checkbox"
@@ -1506,7 +1664,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 6 Results",
           "title": "Step 6 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -1519,7 +1677,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step6IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step6\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -1660,7 +1818,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step7",
-          "nextPage": "next = data.isEligible === true ? \"step8\" : \"step7IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step7\") ? \"step8\" : \"step7IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -1760,15 +1918,49 @@
                 }
               ],
               "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "gastrointestinalIssues",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is fals",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "selectboxes",
               "input": true,
               "inputType": "checkbox"
             },
             {
               "label": "isBloodworkRequired",
-              "calculateValue": "const isEligible = data.isEligible;\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedCond = data.diagnosedConditions || {};\n\nconst gastrointestinalConditions =\n  gastrointestinalIssues.gallbladderIssues === true;\n\nconst diagnosedConditions = [\n  'highTriglycerides',\n  'liverIssues',\n  'chronicKidneyDiseaseStage2',\n  'chronicKidneyDiseaseStage3'\n].some(key => diagnosedCond[key] === true);\n  \n\nvalue = isEligible === true && \n(gastrointestinalConditions || diagnosedConditions);",
+              "calculateValue": "const isEligible = data.isEligible;\nconst gastrointestinalIssues = data.gastrointestinalIssues || {};\nconst diagnosedCond = data.diagnosedConditions || {};\n\nconst gastrointestinalConditions =\n  gastrointestinalIssues.gallbladderIssues === true;\n\nconst diagnosedConditions = [\n  'highTriglycerides',\n  'liverIssues',\n  'chronicKidneyDiseaseStage2Or3'\n].some(key => diagnosedCond[key] === true);\n  \n\nvalue = isEligible === true && \n(gastrointestinalConditions || diagnosedConditions);",
               "key": "isBloodworkRequired",
               "type": "hidden",
               "input": true,
@@ -1777,7 +1969,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 7 Results",
           "title": "Step 7 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -1790,7 +1982,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step7IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step7\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -1904,7 +2096,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step8",
-          "nextPage": "next = data.isEligible === true ? \"step9\" : \"step8IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step8\") ? \"step9\" : \"step8IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -2068,8 +2260,42 @@
                 }
               ],
               "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "diagnosedConditions",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is fals",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "selectboxes",
               "input": true,
               "inputType": "checkbox"
@@ -2077,7 +2303,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 8 Results",
           "title": "Step 8 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -2090,7 +2316,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step8IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step8\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -2204,7 +2430,7 @@
           "scrollToTop": true,
           "collapsible": false,
           "key": "step9",
-          "nextPage": "next = data.isEligible === true ? \"step10\" : \"step9IneligibilityResults\";",
+          "nextPage": "next = (data.isEligible === true || data.ineligibilitySource !== \"step9\") ? \"step10\" : \"step9IneligibilityResults\";",
           "type": "panel",
           "input": false,
           "tableView": false,
@@ -2326,8 +2552,42 @@
                 }
               ],
               "calculateValue": "const conditions = { ...value };\n\n// Is 'none' selected?\nconst noneSelected = conditions.none === true;\n\n// Are any other options selected?\nconst otherSelected = Object.keys(conditions)\n  .some(key => key !== 'none' && conditions[key] === true);\n\n// If 'none' is selected, it wins → clear others\nif (noneSelected) {\n  Object.keys(conditions).forEach(key => {\n    if (key !== 'none') {\n      conditions[key] = false;\n    }\n  });\n}\n\n// If another option is selected, it wins → clear none\nif (!noneSelected && otherSelected) {\n  conditions.none = false;\n}\n\nreturn conditions;",
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "lifestyle",
+              "logic": [
+                {
+                  "name": "Set required when isEligible is fals",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "selectboxes",
               "input": true,
               "inputType": "checkbox"
@@ -2335,7 +2595,7 @@
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Step 9 Results",
           "title": "Step 9 Results",
           "breadcrumbClickable": false,
           "buttonSettings": {
@@ -2348,7 +2608,7 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "step9IneligibilityResults",
-          "customConditional": "show = data.isEligible === false;",
+          "customConditional": "show = data.isEligible === false && data.ineligibilitySource === \"step9\" && !options.pdf;",
           "type": "panel",
           "allowPrevious": false,
           "input": false,
@@ -2531,17 +2791,51 @@
                   "shortcut": ""
                 }
               ],
+              "validate": {
+                "required": true
+              },
               "validateWhenHidden": false,
               "key": "confirmation",
+              "logic": [
+                {
+                  "name": "Set required property when isEligible is false",
+                  "trigger": {
+                    "type": "simple",
+                    "simple": {
+                      "show": true,
+                      "conjunction": "all",
+                      "conditions": [
+                        {
+                          "component": "isEligible",
+                          "operator": "isEqual",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "actions": [
+                    {
+                      "name": "Set property",
+                      "type": "property",
+                      "property": {
+                        "label": "Required",
+                        "value": "validate.required",
+                        "type": "boolean"
+                      },
+                      "state": false
+                    }
+                  ]
+                }
+              ],
               "type": "radio",
               "input": true
             }
           ]
         },
         {
-          "label": "*** TEST LABEL ***",
+          "label": "Results",
           "title": "Results",
-          "breadcrumbClickable": true,
+          "breadcrumbClickable": false,
           "buttonSettings": {
             "previous": false,
             "cancel": false,
@@ -2552,7 +2846,9 @@
           "scrollToTop": false,
           "collapsible": false,
           "key": "eligibilityResults",
+          "customConditional": "show = !options.pdf;",
           "type": "panel",
+          "allowPrevious": false,
           "input": false,
           "tableView": false,
           "components": [
@@ -2803,13 +3099,12 @@
           "buttonSettings": {
             "previous": false,
             "cancel": false,
-            "next": false
+            "next": true
           },
           "navigateOnEnter": false,
           "saveOnEnter": false,
           "scrollToTop": false,
           "collapsible": false,
-          "hidden": true,
           "hideLabel": true,
           "disabled": true,
           "key": "page21",
@@ -2874,39 +3169,27 @@
       "submissionAccess": [
         {
           "type": "create_own",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "create_all",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "read_own",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "read_all",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "update_own",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "update_all",
-          "roles": [
-            "anonymous"
-          ]
+          "roles": []
         },
         {
           "type": "delete_own",
@@ -2932,7 +3215,7 @@
       "properties": {
         "programName": "Weight Management"
       },
-      "controller": "if (Array.isArray(components) && components.length > 0) {\n  components[0].label = '*** TEST LABEL ***';\n}",
+      "controller": "",
       "submissionRevisions": "",
       "revisions": "",
       "esign": {}
